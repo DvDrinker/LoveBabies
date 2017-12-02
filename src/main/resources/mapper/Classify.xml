@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanou.dao.ClassifyMapper">
+
+	<resultMap type="Classify" id="ClassifyResult">
+		<id column="classifyId" property="classifyId" javaType="Integer" />
+		<result column="classifyName" property="classifyName" jdbcType="VARCHAR" />
+		<result column="classifyBelong" property="classifyBelong" jdbcType="INTEGER" />
+		<result column="classifyParentId" property="classifyParentId" jdbcType="INTEGER" />
+		<result column="deleteId" property="deleteId" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<select id="findFirstClassify" parameterType="Integer" resultMap="ClassifyResult" >
+		select * from classify where classifyParentId=#{classifyParentId}
+	</select>
+
+	<select id="findById" parameterType="Integer" resultMap="ClassifyResult" >
+		select * from classify where classifyId=#{classifyId}
+	</select>
+
+	<select id="findChildById" parameterType="Integer" resultMap="ClassifyResult" >
+		select * from classify where classifyParentId=#{classifyId}
+	</select>
+</mapper>
