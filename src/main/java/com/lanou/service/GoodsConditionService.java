@@ -10,4 +10,6 @@ import java.util.List;
 public interface GoodsConditionService {
 
     public List<GoodsCondition> findConditions();
+
+    public List<GoodsCondition> findConditionsByGoods_id(Integer goods_id);
 }

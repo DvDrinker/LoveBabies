@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>indexhahaha,${condition}</h1>
+	<h1>indexhahaha,${conditions}</h1>
 </body>
 </html>

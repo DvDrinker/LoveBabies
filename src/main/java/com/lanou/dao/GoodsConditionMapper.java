@@ -9,5 +9,7 @@ import java.util.List;
  */
 public interface GoodsConditionMapper {
 
-    public List<GoodsCondition> findConditions();
+    public List<GoodsCondition> findAllConditions();
+
+    public List<GoodsCondition> findConditionsByGoods_id(Integer goods_id);
 }
