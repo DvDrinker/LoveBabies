@@ -5,8 +5,7 @@ import java.util.Date;
 /**
  * Created by lanou on 2017/12/4.
  */
-public class goods {
-
+public class Goods {
     private Integer goodsId;
     private String goodsName;
     private Double goodsConsultPrice;
@@ -107,12 +106,12 @@ public class goods {
         this.goodsNum = goodsNum;
     }
 
-    public goods() {
+    public Goods() {
     }
 
     @Override
     public String toString() {
-        return "goods{" +
+        return "Goods{" +
                 "goodsId=" + goodsId +
                 ", goodsName='" + goodsName + '\'' +
                 ", goodsConsultPrice=" + goodsConsultPrice +
