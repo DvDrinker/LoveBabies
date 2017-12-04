@@ -23,20 +23,23 @@ public class GoodsController {
     private ClassifyService classifyService;
 
     @RequestMapping(value = "/findGoods.do")
-    public String findGoods(HttpServletResponse response){
+    public void findGoods(HttpServletResponse response){
         FastJson.toJson(goodsService.findGoods(),response);
-        return "index";
+
     }
 
     @RequestMapping(value = "/findGoodsByClassify")
-    public  String findGoodsByClassify(HttpServletResponse response,Integer classifyId){
+    public  void findGoodsByClassify(HttpServletResponse response,Integer classifyId){
         List<Integer> classifyIds = classifyService.findAllThirdId(classifyId);
 
 
         List<Goods> goodsList = goodsService.findGoodsByClassifyId(classifyIds);
         FastJson.toJson(goodsList,response);
 
-        return "index";
+
     }
+
+
+
 
 }

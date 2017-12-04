@@ -10,5 +10,6 @@ import java.util.List;
 public interface GoodsService {
     public List<Goods> findGoods();
 
+    //根据3级分类查找该分类下的所有商品
     public List<Goods> findGoodsByClassifyId(List<Integer> integers);
 }
