@@ -6,7 +6,9 @@ import com.lanou.service.ClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sun.text.resources.cldr.ja.FormatData_ja;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,4 +46,24 @@ public class ClassifyServiceImpl implements ClassifyService{
         }
         return classifies;
     }
+
+    //根据id查找所有三级分类id
+    @Transactional
+    public List<Integer> findAllThirdId(Integer classifyId) {
+        List<Integer> thirdIdList=new ArrayList<Integer>();
+        List<Classify>  classifies=findChildById(classifyId);
+        for (int i = 0; i <classifies.size() ; i++) {
+            if (classifies.get(i).getClassifies()!=null){
+                List<Classify>  classifies2=classifies.get(i).getClassifies();
+                for (int j = 0; j <classifies2.size() ; j++) {
+                    thirdIdList.add(classifies2.get(j).getClassifyId());
+                }
+            }else{
+                thirdIdList.add(classifies.get(i).getClassifyId());
+            }
+        }
+        return thirdIdList;
+    }
+
+
 }
