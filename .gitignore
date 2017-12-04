@@ -6,7 +6,7 @@
 *.orig
 
 #maven
-
+target/
 
 #eclipse
 .settings/
