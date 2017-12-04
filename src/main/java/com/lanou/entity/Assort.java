@@ -1,0 +1,45 @@
+package com.lanou.entity;
+
+/**
+ * Created by lanou on 2017/12/3.
+ */
+public class Assort {
+
+    private Integer aId;
+    private String aName;
+
+    public Integer getaId() {
+        return aId;
+    }
+
+    public void setaId(Integer aId) {
+        this.aId = aId;
+    }
+
+    public String getaName() {
+        return aName;
+    }
+
+    public void setaName(String aName) {
+        this.aName = aName;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Assort{" +
+                "aId=" + aId +
+                ", aName='" + aName + '\'' +
+                '}';
+    }
+
+    public Assort(Integer aId, String aName) {
+        this.aId = aId;
+        this.aName = aName;
+    }
+
+    public Assort() {
+    }
+
+
+}

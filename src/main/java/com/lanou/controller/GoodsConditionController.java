@@ -51,11 +51,15 @@ public class GoodsConditionController {
         for (int i = 0; i < goods_ids.length; i++) {
             for (GoodsCondition gc: goodsConditionService.findConditionsByGoods_id(goods_ids[i])
                  ) {
+//                两重for循环是为了找到每一条符合条件的筛选属性数据
+//
 
 
                 System.out.println(gc);
                 if (!biggerConditionMap.containsKey(gc.getCondition_name())){
+//                  如果biggerMap中还没有包含有某个属性：例如品牌
                     fewerConditionMap.put(gc.getCondtion_value(),1);
+//
                     biggerConditionMap.put(gc.getCondition_name(),fewerConditionMap);
                 }
                 else {
