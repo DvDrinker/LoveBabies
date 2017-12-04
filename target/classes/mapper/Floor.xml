@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanou.dao.FloorMapper">
+
+	<resultMap type="Floor" id="FloorResult">
+		<id column="floorId" property="floorId" javaType="Integer" />
+		<result column="floorName" property="floorName" jdbcType="VARCHAR" />
+		<result column="classifyId" property="classifyId" jdbcType="INTEGER" />
+		<result column="deleteId" property="deleteId" jdbcType="INTEGER" />
+	</resultMap>
+
+	<select id="findAllFloor" resultMap="FloorResult">
+		SELECT * from floor
+	</select>
+
+</mapper>
