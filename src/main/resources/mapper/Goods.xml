@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanou.dao.GoodsMapper">
+
+	<resultMap type="Goods" id="GoodsResult">
+		<id column="goodsId" property="goodsId" javaType="Integer" />
+		<result column="goodsName" property="goodsName" jdbcType="VARCHAR" />
+		<result column="goodsConsultPrice" property="goodsConsultPrice" jdbcType="DOUBLE" />
+		<result column="goodsMemberPrice" property="goodsMemberPrice" jdbcType="DOUBLE" />
+		<result column="goodsSalesMes" property="goodsSalesMes" jdbcType="VARCHAR" />
+		<result column="goodsInventory" property="goodsInventory" jdbcType="INTEGER" />
+		<result column="goodsSalesVolum" property="goodsSalesVolum" jdbcType="INTEGER" />
+		<result column="goodsThirdClassifyId" property="goodsThirdClassifyId" jdbcType="INTEGER" />
+		<result column="goodsGroundingTime" property="goodsGroundingTime" jdbcType="DATE" />
+		<result column="deleteId" property="deleteId" jdbcType="INTEGER" />
+		<result column="goodsNum" property="goodsNum" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="findGoods" resultMap="GoodsResult" >
+		select * from goods
+	</select>
+
+	<select id="findGoodsByClassifyId" resultMap="GoodsResult">
+		SELECT * from goods WHERE goodsThirdClassifyId IN (1,2)
+
+	</select>
+
+
+	<!--private Integer goodsId;-->
+	<!--private String goodsName;-->
+	<!--private Double goodsConsultPrice;-->
+	<!--private Double goodsMemberPrice;-->
+	<!--private String goodsSalesMes;-->
+	<!--private Integer goodsInventory;-->
+	<!--private Integer goodsSalesVolum;-->
+	<!--private Integer goodsThirdClassifyId;-->
+	<!--private Date goodsGroundingTime;-->
+	<!--private Integer deleteId;-->
+	<!--private String goodsNum;-->
+</mapper>

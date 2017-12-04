@@ -6,7 +6,6 @@ import com.lanou.service.ClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sun.text.resources.cldr.ja.FormatData_ja;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +52,7 @@ public class ClassifyServiceImpl implements ClassifyService{
         List<Integer> thirdIdList=new ArrayList<Integer>();
         List<Classify>  classifies=findChildById(classifyId);
         for (int i = 0; i <classifies.size() ; i++) {
-            if (classifies.get(i).getClassifies()!=null){
+            if (classifies.get(i).getClassifies().size() !=0){
                 List<Classify>  classifies2=classifies.get(i).getClassifies();
                 for (int j = 0; j <classifies2.size() ; j++) {
                     thirdIdList.add(classifies2.get(j).getClassifyId());
