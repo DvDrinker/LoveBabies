@@ -51,6 +51,9 @@ public class ClassifyServiceImpl implements ClassifyService{
     public List<Integer> findAllThirdId(Integer classifyId) {
         List<Integer> thirdIdList=new ArrayList<Integer>();
         List<Classify>  classifies=findChildById(classifyId);
+        if (classifies.size()==0){
+            thirdIdList.add(classifyId);
+        }
         for (int i = 0; i <classifies.size() ; i++) {
             if (classifies.get(i).getClassifies().size() !=0){
                 List<Classify>  classifies2=classifies.get(i).getClassifies();
