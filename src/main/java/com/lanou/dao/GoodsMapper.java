@@ -10,4 +10,6 @@ import java.util.List;
 public interface GoodsMapper {
     public List<Goods> findGoods();
 
+    public List<Goods> findGoodsByClassifyId(List<Integer> integers);
+
 }

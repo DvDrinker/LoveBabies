@@ -21,4 +21,8 @@ public class GoodsServiceImpl implements GoodsService{
     public List<Goods> findGoods() {
         return goodsMapper.findGoods();
     }
+
+    public List<Goods> findGoodsByClassifyId(List<Integer> integers) {
+        return goodsMapper.findGoodsByClassifyId(integers);
+    }
 }

@@ -21,8 +21,11 @@
 		select * from goods
 	</select>
 
-	<select id="findGoodsByClassifyId" resultMap="GoodsResult">
-		SELECT * from goods WHERE goodsThirdClassifyId IN (1,2)
+	<select id="findGoodsByClassifyId" resultMap="GoodsResult" parameterType="ArrayList">
+		SELECT * from goods WHERE goodsThirdClassifyId IN
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{integers}
+		</foreach>
 
 	</select>
 

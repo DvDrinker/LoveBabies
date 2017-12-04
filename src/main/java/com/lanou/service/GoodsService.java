@@ -10,4 +10,5 @@ import java.util.List;
 public interface GoodsService {
     public List<Goods> findGoods();
 
+    public List<Goods> findGoodsByClassifyId(List<Integer> integers);
 }
