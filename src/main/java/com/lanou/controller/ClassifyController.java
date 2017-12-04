@@ -19,7 +19,7 @@ public class ClassifyController {
     @Autowired
     private ClassifyService classifyService;
 
-
+    //查找一级分类
     @RequestMapping("/findFirstClassify.do")
     public void findFirstClassify(Integer classifyParentId,HttpServletResponse response){
 
@@ -29,6 +29,7 @@ public class ClassifyController {
 
     }
 
+    //查找所有分类
     @RequestMapping("/findClassify.do")
     public void findClassify(Integer classifyId,HttpServletResponse response){
 
@@ -37,5 +38,7 @@ public class ClassifyController {
         FastJson.toJson(classify,response);
 
     }
+
+
 
 }

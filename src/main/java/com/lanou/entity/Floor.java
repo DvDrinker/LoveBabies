@@ -6,29 +6,23 @@ package com.lanou.entity;
 public class Floor {
 
     private Integer floorId;
+    private String floorNum;
     private String floorName;
     private Integer classifyId;
     private Integer deleteId;
-
-    public Floor() {
-    }
 
     @Override
     public String toString() {
         return "Floor{" +
                 "floorId=" + floorId +
+                ", floorNum='" + floorNum + '\'' +
                 ", floorName='" + floorName + '\'' +
                 ", classifyId=" + classifyId +
                 ", deleteId=" + deleteId +
                 '}';
     }
 
-    public Integer getDeleteId() {
-        return deleteId;
-    }
-
-    public void setDeleteId(Integer deleteId) {
-        this.deleteId = deleteId;
+    public Floor() {
     }
 
     public Integer getFloorId() {
@@ -37,6 +31,14 @@ public class Floor {
 
     public void setFloorId(Integer floorId) {
         this.floorId = floorId;
+    }
+
+    public String getFloorNum() {
+        return floorNum;
+    }
+
+    public void setFloorNum(String floorNum) {
+        this.floorNum = floorNum;
     }
 
     public String getFloorName() {
@@ -53,5 +55,13 @@ public class Floor {
 
     public void setClassifyId(Integer classifyId) {
         this.classifyId = classifyId;
+    }
+
+    public Integer getDeleteId() {
+        return deleteId;
+    }
+
+    public void setDeleteId(Integer deleteId) {
+        this.deleteId = deleteId;
     }
 }

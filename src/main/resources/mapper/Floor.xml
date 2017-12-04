@@ -6,6 +6,7 @@
 
 	<resultMap type="Floor" id="FloorResult">
 		<id column="floorId" property="floorId" javaType="Integer" />
+		<result column="floorNum" property="floorNum" jdbcType="VARCHAR" />
 		<result column="floorName" property="floorName" jdbcType="VARCHAR" />
 		<result column="classifyId" property="classifyId" jdbcType="INTEGER" />
 		<result column="deleteId" property="deleteId" jdbcType="INTEGER" />
