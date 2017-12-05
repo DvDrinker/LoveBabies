@@ -34,8 +34,16 @@
 		select * from goods
 	</select>
 
+	<!--//在一个已有的goods集合中模糊查询-->
+	<select id="findLikeKeyword" resultMap="GoodsResult">
+		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1 FROM goods where goodsName LIKE concat(concat('%',#{keyword}),'%') and goodsId in
+		<foreach collection="goodsList" index="index" item="item" open="(" separator="," close=")">
+			#{item.goodsId}
+		</foreach>
+	</select>
 
-	
+
+	<!--输入顺序参数和分类，得到对应顺序的所有分类下的商品信息-->
 	<select id="findGoodsByClassifyId" resultMap="GoodsResult" >
 		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1 from goods WHERE goodsThirdClassifyId IN
 		<foreach item="item" index="index" collection="items" open="(" separator="," close=")">
@@ -49,6 +57,14 @@
 			<when test="seq == 4">goodsMemberPrice asc</when>
 		</choose>
 
+	</select>
+
+	<!--传入classify取它下面的商品信息-->
+	<select id="findGoodsByOneClassifyId" resultMap="GoodsResult" >
+	SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1 from goods WHERE goodsThirdClassifyId IN
+	<foreach item="item" index="index" collection="items" open="(" separator="," close=")">
+		#{item}
+	</foreach>
 	</select>
 
 	<select id="findGoodsIdByThirdId" resultType="Integer">

@@ -30,6 +30,10 @@ public class GoodsServiceImpl implements GoodsService{
         return goodsMapper.findGoodsByClassifyId(integers,sequence);
     }
 
+    public List<Goods> findGoodsByOneClassifyId(List<Integer> integers) {
+        return goodsMapper.findGoodsByOneClassifyId(integers);
+    }
+
     @Transactional
     public List<Integer> findGoodsIdByThirdId(List<Integer> thirdIdList) {
         List<Integer> goodsId=goodsMapper.findGoodsIdByThirdId(thirdIdList);
@@ -43,6 +47,10 @@ public class GoodsServiceImpl implements GoodsService{
 
     public Goods findGoodsByGoodsId(Integer goodsId) {
         return goodsMapper.findGoodsById(goodsId);
+    }
+
+    public List<Goods> findLikeKeyword(String keyword, List<Goods> goodsList) {
+        return goodsMapper.findLikeKeyword(keyword,goodsList);
     }
 
 

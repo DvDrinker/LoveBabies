@@ -14,9 +14,13 @@ public interface GoodsService {
     //根据3级分类查找该分类下的所有商品
     public List<Goods> findGoodsByClassifyId(List<Integer> integers,Integer sequence);
 
+    public List<Goods> findGoodsByOneClassifyId(List<Integer> integers);
+
     public List<Integer> findGoodsIdByThirdId(List<Integer> thirdIdList);
 
     public List<Goods> findGoodsByIdSet(Set<Integer> goodsIds);
 
     public Goods findGoodsByGoodsId(Integer goodsId);
+
+    public List<Goods> findLikeKeyword(String keyword,List<Goods> goodsList);
 }
