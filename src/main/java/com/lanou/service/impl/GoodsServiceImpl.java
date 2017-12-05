@@ -22,7 +22,10 @@ public class GoodsServiceImpl implements GoodsService{
         return goodsMapper.findGoods();
     }
 
-    public List<Goods> findGoodsByClassifyId(List<Integer> integers) {
-        return goodsMapper.findGoodsByClassifyId(integers);
+    @Transactional
+    public List<Goods> findGoodsByClassifyId(List<Integer> integers, Integer sequence) {
+        return goodsMapper.findGoodsByClassifyId(integers,sequence);
     }
+
+
 }

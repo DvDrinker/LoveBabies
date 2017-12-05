@@ -12,7 +12,7 @@ public class Goods {
     private Double goodsMemberPrice;
     private String goodsSalesMes;
     private Integer goodsInventory;
-    private Integer goodsSalesVolum;
+    private Integer goodsSalesVolume;
     private Integer goodsThirdClassifyId;
     private Date goodsGroundingTime;
     private Integer deleteId;
@@ -66,12 +66,12 @@ public class Goods {
         this.goodsInventory = goodsInventory;
     }
 
-    public Integer getGoodsSalesVolum() {
-        return goodsSalesVolum;
+    public Integer getGoodsSalesVolume() {
+        return goodsSalesVolume;
     }
 
-    public void setGoodsSalesVolum(Integer goodsSalesVolum) {
-        this.goodsSalesVolum = goodsSalesVolum;
+    public void setGoodsSalesVolume(Integer goodsSalesVolume) {
+        this.goodsSalesVolume = goodsSalesVolume;
     }
 
     public Integer getGoodsThirdClassifyId() {
@@ -106,7 +106,8 @@ public class Goods {
         this.goodsNum = goodsNum;
     }
 
-    public Goods() {
+    public Goods(Integer goodsSalesVolume) {
+        this.goodsSalesVolume = goodsSalesVolume;
     }
 
     @Override
@@ -118,11 +119,14 @@ public class Goods {
                 ", goodsMemberPrice=" + goodsMemberPrice +
                 ", goodsSalesMes='" + goodsSalesMes + '\'' +
                 ", goodsInventory=" + goodsInventory +
-                ", goodsSalesVolum=" + goodsSalesVolum +
+                ", goodsSalesVolume=" + goodsSalesVolume +
                 ", goodsThirdClassifyId=" + goodsThirdClassifyId +
                 ", goodsGroundingTime=" + goodsGroundingTime +
                 ", deleteId=" + deleteId +
                 ", goodsNum='" + goodsNum + '\'' +
                 '}';
+    }
+
+    public Goods() {
     }
 }

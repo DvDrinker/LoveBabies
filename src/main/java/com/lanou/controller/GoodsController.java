@@ -29,11 +29,15 @@ public class GoodsController {
     }
 
     @RequestMapping(value = "/findGoodsByClassify")
-    public  void findGoodsByClassify(HttpServletResponse response,Integer classifyId){
+    public  void findGoodsByClassify(HttpServletResponse response,Integer classifyId,Integer sequence){
         List<Integer> classifyIds = classifyService.findAllThirdId(classifyId);
 
+        if ( sequence == null ){
+            sequence = 1;
 
-        List<Goods> goodsList = goodsService.findGoodsByClassifyId(classifyIds);
+        }
+        System.out.println(sequence);
+        List<Goods> goodsList = goodsService.findGoodsByClassifyId(classifyIds,sequence);
         FastJson.toJson(goodsList,response);
 
 

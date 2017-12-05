@@ -11,7 +11,7 @@
 		<result column="goodsMemberPrice" property="goodsMemberPrice" jdbcType="DOUBLE" />
 		<result column="goodsSalesMes" property="goodsSalesMes" jdbcType="VARCHAR" />
 		<result column="goodsInventory" property="goodsInventory" jdbcType="INTEGER" />
-		<result column="goodsSalesVolum" property="goodsSalesVolum" jdbcType="INTEGER" />
+		<result column="goodsSalesVolume" property="goodsSalesVolume" jdbcType="INTEGER" />
 		<result column="goodsThirdClassifyId" property="goodsThirdClassifyId" jdbcType="INTEGER" />
 		<result column="goodsGroundingTime" property="goodsGroundingTime" jdbcType="DATE" />
 		<result column="deleteId" property="deleteId" jdbcType="INTEGER" />
@@ -21,11 +21,20 @@
 		select * from goods
 	</select>
 
-	<select id="findGoodsByClassifyId" resultMap="GoodsResult" parameterType="ArrayList">
+
+	
+	<select id="findGoodsByClassifyId" resultMap="GoodsResult" >
 		SELECT * from goods WHERE goodsThirdClassifyId IN
-		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+		<foreach item="item" index="index" collection="items" open="(" separator="," close=")">
 			#{item}
 		</foreach>
+		order by
+		<choose>
+			<when test="seq == 1">goodsId asc</when>
+			<when test="seq == 2">goodsGroundingTime desc</when>
+			<when test="seq == 3">goodsSalesVolume desc</when>
+			<when test="seq == 4">goodsMemberPrice asc</when>
+		</choose>
 
 	</select>
 
