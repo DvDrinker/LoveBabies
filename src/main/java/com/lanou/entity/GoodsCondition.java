@@ -40,12 +40,10 @@ public class GoodsCondition {
         this.condition_name = condition_name;
     }
 
-    public String getCondtion_value() {
-        return condition_value;
-    }
+    public String getCondition_value() { return condition_value; }
 
-    public void setCondtion_value(String condtion_value) {
-        this.condition_value = condtion_value;
+    public void setCondition_value(String condition_value) {
+        this.condition_value = condition_value;
     }
 
     public GoodsCondition() {
@@ -60,4 +58,6 @@ public class GoodsCondition {
                 ", condition_value='" + condition_value + '\'' +
                 '}';
     }
+
+
 }

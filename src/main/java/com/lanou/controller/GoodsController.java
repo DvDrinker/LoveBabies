@@ -2,6 +2,7 @@ package com.lanou.controller;
 
 import com.lanou.entity.Goods;
 import com.lanou.service.ClassifyService;
+import com.lanou.service.GoodsConditionService;
 import com.lanou.service.GoodsService;
 import com.lanou.util.FastJson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +23,8 @@ public class GoodsController {
     private GoodsService goodsService;
     @Autowired
     private ClassifyService classifyService;
+    @Autowired
+    private GoodsConditionService goodsConditionService;
 
     @RequestMapping(value = "/findGoods.do")
     public void findGoods(HttpServletResponse response){
@@ -43,7 +47,28 @@ public class GoodsController {
 
     }
 
+    @RequestMapping(value = "getGoodsById")
+    public void getGoodsById(HttpServletResponse response,Integer goodsId){
+        Goods goods = goodsService.findGoodsByGoodsId(goodsId);
+        FastJson.toJson(goods,response);
 
+    }
+
+    @RequestMapping(value = "getGoodsByConditions.do")
+    public void getGoodsByConditions(HttpServletResponse response,String conditionName,String conditionvalue,Integer[] goodsIds){
+
+        List<Integer> integerList = new ArrayList<Integer>();
+        for (int i = 0; i < goodsIds.length; i++) {
+            integerList.add(goodsIds[i]);
+        }
+
+        List<Integer> integers = goodsConditionService.getGoodsIdByCondition(conditionName,conditionvalue,integerList);
+
+
+        FastJson.toJson(integers,response);
+
+
+    }
 
 
 }

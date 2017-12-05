@@ -26,4 +26,8 @@ public class GoodsConditionServiceImpl implements GoodsConditionService{
     public List<GoodsCondition> findConditionsByGoods_id(Integer goods_id) {
         return goodsConditionMapper.findConditionsByGoods_id(goods_id);
     }
+
+    public List<Integer> getGoodsIdByCondition(String conditionName, String conditionValue, List<Integer> goodIds) {
+        return goodsConditionMapper.getGoodsIdByCondition(conditionName,conditionValue,goodIds);
+    }
 }

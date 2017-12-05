@@ -12,4 +12,6 @@ public interface GoodsConditionService {
     public List<GoodsCondition> findConditions();
 
     public List<GoodsCondition> findConditionsByGoods_id(Integer goods_id);
+
+    public List<Integer> getGoodsIdByCondition(String conditionName,String conditionValue,List<Integer> goodIds);
 }

@@ -17,4 +17,17 @@
     <select id="findConditionsByGoods_id" resultMap="GoodsConditionMapper" parameterType="Integer">
         SELECT * FROM conditions WHERE goods_id = #{goods_id}
     </select>
+
+    <select id="getGoodsIdByCondition" resultType="Integer" >
+
+        SELECT goods_id FROM conditions where condition_name = #{condition_name} and
+        condition_value = #{condition_value}
+        and goods_id in
+        <foreach collection="goodsIds" index="index" item="item" close=")" open="(" separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+
+
 </mapper>

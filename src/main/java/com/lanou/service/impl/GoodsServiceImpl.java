@@ -41,5 +41,9 @@ public class GoodsServiceImpl implements GoodsService{
         return goods;
     }
 
+    public Goods findGoodsByGoodsId(Integer goodsId) {
+        return goodsMapper.findGoodsById(goodsId);
+    }
+
 
 }

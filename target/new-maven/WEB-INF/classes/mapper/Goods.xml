@@ -3,6 +3,15 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lanou.dao.GoodsMapper">
+	<resultMap id="GoodsSimpleMap" type="Goods">
+		<id column="goodsId" property="goodsId" javaType="Integer" />
+		<result column="goodsName" property="goodsName" jdbcType="VARCHAR" />
+		<result column="goodsConsultPrice" property="goodsConsultPrice" jdbcType="DOUBLE" />
+		<result column="goodsMemberPrice" property="goodsMemberPrice" jdbcType="DOUBLE" />
+		<result column="img1" property="img1" jdbcType="VARCHAR" />
+
+	</resultMap>
+
 
 	<resultMap type="Goods" id="GoodsResult">
 		<id column="goodsId" property="goodsId" javaType="Integer" />
@@ -16,6 +25,10 @@
 		<result column="goodsGroundingTime" property="goodsGroundingTime" jdbcType="DATE" />
 		<result column="deleteId" property="deleteId" jdbcType="INTEGER" />
 		<result column="goodsNum" property="goodsNum" jdbcType="VARCHAR" />
+		<result column="img1" property="img1" jdbcType="VARCHAR" />
+		<result column="img2" property="img2" jdbcType="VARCHAR" />
+		<result column="img3" property="img3" jdbcType="VARCHAR" />
+		<result column="img4" property="img4" jdbcType="VARCHAR" />
 	</resultMap>
 	<select id="findGoods" resultMap="GoodsResult" >
 		select * from goods
@@ -24,7 +37,7 @@
 
 	
 	<select id="findGoodsByClassifyId" resultMap="GoodsResult" >
-		SELECT * from goods WHERE goodsThirdClassifyId IN
+		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1 from goods WHERE goodsThirdClassifyId IN
 		<foreach item="item" index="index" collection="items" open="(" separator="," close=")">
 			#{item}
 		</foreach>
@@ -52,6 +65,12 @@
 			#{goodsId}
 		</foreach>
 	</select>
+
+	<select id="findGoodsById" resultMap="GoodsResult" parameterType="Integer">
+		SELECT  *  FROM  goods WHERE  goodsId = #{goodsId}
+	</select>
+
+
 	<!--private Integer goodsId;-->
 	<!--private String goodsName;-->
 	<!--private Double goodsConsultPrice;-->

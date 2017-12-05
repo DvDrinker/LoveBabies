@@ -1,7 +1,6 @@
 package com.lanou.service;
 
 import com.lanou.entity.Goods;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Set;
@@ -18,4 +17,6 @@ public interface GoodsService {
     public List<Integer> findGoodsIdByThirdId(List<Integer> thirdIdList);
 
     public List<Goods> findGoodsByIdSet(Set<Integer> goodsIds);
+
+    public Goods findGoodsByGoodsId(Integer goodsId);
 }

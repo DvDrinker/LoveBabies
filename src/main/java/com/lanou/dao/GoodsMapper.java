@@ -21,4 +21,5 @@ public interface GoodsMapper {
 
     public List<Goods> findGoodsByIdSet(@Param("goodsIds")Set<Integer> goodsIds);
 
+    public Goods findGoodsById(Integer goodsId);
 }
