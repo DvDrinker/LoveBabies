@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>indexhahaha,${conditions}</h1>
+<%=session.getAttribute("users")%>
 </body>
 </html>
