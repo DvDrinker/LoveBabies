@@ -8,14 +8,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by lanou on 2017/12/4.
  */
-@Service("GoodsService")
+@Service("goodsService")
 public class GoodsServiceImpl implements GoodsService{
     @Autowired
     private GoodsMapper goodsMapper;
+
+
 
     @Transactional
     public List<Goods> findGoods() {
@@ -25,6 +28,17 @@ public class GoodsServiceImpl implements GoodsService{
     @Transactional
     public List<Goods> findGoodsByClassifyId(List<Integer> integers, Integer sequence) {
         return goodsMapper.findGoodsByClassifyId(integers,sequence);
+    }
+
+    @Transactional
+    public List<Integer> findGoodsIdByThirdId(List<Integer> thirdIdList) {
+        List<Integer> goodsId=goodsMapper.findGoodsIdByThirdId(thirdIdList);
+        return goodsId;
+    }
+
+    public List<Goods> findGoodsByIdSet(Set<Integer> goodsIds) {
+        List<Goods> goods=goodsMapper.findGoodsByIdSet(goodsIds);
+        return goods;
     }
 
 

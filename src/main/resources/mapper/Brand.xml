@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanou.dao.BrandMapper">
+
+	<resultMap type="Brand" id="BrandResult">
+		<id column="brandId" property="brandId" javaType="Integer" />
+		<result column="brandName" property="brandName" jdbcType="VARCHAR" />
+		<result column="brandSrc" property="brandSrc" jdbcType="VARCHAR" />
+		<result column="classifyId" property="classifyId" jdbcType="INTEGER" />
+		<result column="deleteId" property="deleteId" jdbcType="INTEGER" />
+	</resultMap>
+
+	<select id="findBrandByClassifyId" parameterType="Integer"  resultMap="BrandResult">
+		SELECT * from brand where classifyId=#{classifyId}
+	</select>
+
+</mapper>

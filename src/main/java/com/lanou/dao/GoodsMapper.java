@@ -4,6 +4,7 @@ import com.lanou.entity.Goods;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by lanou on 2017/12/4.
@@ -16,5 +17,8 @@ public interface GoodsMapper {
 
     //排序：上架时间排序；销量排序；价格排序
 
+    public List<Integer> findGoodsIdByThirdId(@Param("thirdIdList") List<Integer> thirdIdList);
+
+    public List<Goods> findGoodsByIdSet(@Param("goodsIds")Set<Integer> goodsIds);
 
 }

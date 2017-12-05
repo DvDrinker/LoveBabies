@@ -38,7 +38,20 @@
 
 	</select>
 
+	<select id="findGoodsIdByThirdId" resultType="Integer">
+		SELECT goodsId from goods where goodsThirdClassifyId IN
+		<foreach collection="thirdIdList" index="index" open="(" separator="," close=")" item="thirdId">
+			#{thirdId}
+		</foreach>
+	</select>
 
+
+	<select id="findGoodsByIdSet" resultMap="GoodsResult">
+		SELECT * from goods where goodsId IN
+		<foreach collection="goodsIds" index="index" open="(" separator="," close=")" item="goodsId">
+			#{goodsId}
+		</foreach>
+	</select>
 	<!--private Integer goodsId;-->
 	<!--private String goodsName;-->
 	<!--private Double goodsConsultPrice;-->
