@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanou.dao.DiscountMesMapper">
+
+	<resultMap type="DiscountMes" id="DiscountMesResult">
+		<id column="discountId" property="discountId" javaType="Integer" />
+		<result column="discountNum" property="discountNum" jdbcType="INTEGER" />
+		<result column="discountMoney" property="discountMoney" jdbcType="DOUBLE" />
+		<result column="deleteId" property="deleteId" jdbcType="INTEGER" />
+		<association property="goods" javaType="Goods" >
+			<id column="goodsId" property="goodsId" javaType="Integer" />
+			<result column="goodsName" property="goodsName" jdbcType="VARCHAR" />
+			<result column="goodsConsultPrice" property="goodsConsultPrice" jdbcType="DOUBLE" />
+			<result column="goodsMemberPrice" property="goodsMemberPrice" jdbcType="DOUBLE" />
+		</association>
+	</resultMap>
+
+
+	
+
+</mapper>

@@ -1,6 +1,7 @@
 package com.lanou.controller;
 
 import com.lanou.entity.Brand;
+import com.lanou.entity.Classify;
 import com.lanou.entity.Goods;
 import com.lanou.service.BrandService;
 import com.lanou.service.ClassifyService;
@@ -41,7 +42,7 @@ public class IndexController {
         System.out.println("goodsId集合："+goodsIds);
         List<Goods> goods=goodsService.findGoodsByIdSet(goodsIds);
         System.out.println("goods:"+goods);
-        List<String> thirdNameList=classifyService.findAllThirdName(classifyId);
+        List<Classify> thirdNameList=classifyService.findAllThirdName(classifyId);
         System.out.println("thirdNameList:"+thirdNameList);
         List<Brand> brands=brandService.findBrandByClassifyId(classifyId);
         System.out.println("brands:"+brands);

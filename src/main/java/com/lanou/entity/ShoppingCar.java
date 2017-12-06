@@ -11,15 +11,74 @@ public class ShoppingCar {
 
     private Goods goods;
 
-    private Integer goodsNum;
-
-    //满减信息
+    private Integer goodsCount;
 
     private User user;
 
-    private Integer delete_id;
+    private Integer deleteId;
 
     private Double totalPrice;
 
+    public Integer getShoppingCarId() {
+        return shoppingCarId;
+    }
 
+    public void setShoppingCarId(Integer shoppingCarId) {
+        this.shoppingCarId = shoppingCarId;
+    }
+
+    public Goods getGoods() {
+        return goods;
+    }
+
+    public void setGoods(Goods goods) {
+        this.goods = goods;
+    }
+
+    public Integer getGoodsCount() {
+        return goodsCount;
+    }
+
+    public void setGoodsCount(Integer goodsCount) {
+        this.goodsCount = goodsCount;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Integer getDeleteId() {
+        return deleteId;
+    }
+
+    public void setDeleteId(Integer deleteId) {
+        this.deleteId = deleteId;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCar{" +
+                "shoppingCarId=" + shoppingCarId +
+                ", goods=" + goods +
+                ", goodsCount=" + goodsCount +
+                ", user=" + user +
+                ", deleteId=" + deleteId +
+                ", totalPrice=" + totalPrice +
+                '}';
+    }
+
+    public ShoppingCar() {
+    }
 }

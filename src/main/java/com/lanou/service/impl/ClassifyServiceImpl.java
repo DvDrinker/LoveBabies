@@ -67,18 +67,18 @@ public class ClassifyServiceImpl implements ClassifyService{
         return thirdIdList;
     }
 
-    //根据一级分类id查找所有三级分类名称
+    //根据一级分类id查找所有三级分类
     @Transactional
-    public List<String> findAllThirdName(Integer classifyId) {
-        List<String> ThirdNameList=new ArrayList<String>();
+    public List<Classify> findAllThirdName(Integer classifyId) {
+        List<Classify> ThirdList=new ArrayList<Classify>();
         List<Classify>  classifies=findChildById(classifyId);
         for (int i = 0; i < classifies.size(); i++) {
             List<Classify>  classifies2=classifies.get(i).getClassifies();
             for(int j=0;j<classifies2.size();j++){
-                ThirdNameList.add(classifies2.get(j).getClassifyName());
+                ThirdList.add(classifies2.get(j));
             }
         }
-        return ThirdNameList;
+        return ThirdList;
     }
 
 
