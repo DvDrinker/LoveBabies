@@ -65,9 +65,14 @@ public class UserServiceImpl implements UserService {
         System.out.println("我去"+userName);
         System.out.println(password);
         boolean result = false;
-        int a = userMapper.addUser(userName,password);
-        if (a == 1) {
-            result = true;
+        List<User> users =  userMapper.selectUserName(userName);
+        System.out.println("user的"+users.size());
+        if (users.size()==0){
+            int a = userMapper.addUser(userName,password);
+            if (a == 1) {
+                result = true;
+                return result;
+            }
         }
         return result;
     }

@@ -25,13 +25,13 @@ public class UserController {
 
 
     //    根据ID查找用户信息
-    @RequestMapping(value = "/select.do")
+    @RequestMapping(value = "/select.do",method = RequestMethod.POST)
     public void selectUser(Integer userId, HttpServletResponse response) {
         User user = userService.selectUser(userId);
         FastJson.toJson(user, response);
     }
     //登录
-    @RequestMapping(value = "/login.do")
+    @RequestMapping(value = "/login.do",method = RequestMethod.POST)
     public void login(String userName , String password, HttpServletResponse response, HttpSession httpSession) {
         List<User> users = userService.login(userName,password);
         boolean result= false;
@@ -51,7 +51,7 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "/addUser.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/addUser.do" ,method = RequestMethod.POST)
     public void addUser(String userName, String password, HttpServletResponse response) {
 
         boolean result = userService.addUser(userName, password);
