@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanou.dao.ShoppingAddressMapper">
+
+    <resultMap type="ShoppingAddress" id="AddressResult">
+        <id column="addressId" property="addressId" javaType="int"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="telephone" property="telephone" jdbcType="VARCHAR"/>
+        <result column="uId" property="uId" javaType="int"/>
+        <result column="deleteId" property="deleteId" javaType="int"/>
+    </resultMap>
+    <select id="selectAddress" resultMap="AddressResult">
+		select * from address where uId=#{uId} and deleteId=0
+	</select>
+    <update id="updateAddress">
+		update address SET name=#{name} , city=#{city} , address=#{address} , phone=#{phone} ,telephone=#{telephone} where addressId=#{addressId}
+	</update>
+    <insert id="addAddress" parameterType="ShoppingAddress">
+		INSERT INTO address (name,city,address,phone,telephone,uId) VALUES
+		  (#{name} , #{city} , #{address} , #{phone} , #{telephone} , #{uId})
+	</insert>
+    <update id="deleteAddress" parameterType="ShoppingAddress" >
+		update address SET deleteId=1 where addressId = #{addressId}
+	</update>
+    <update id="defaultAddress1" parameterType="ShoppingAddress">
+        update address set defaultId = 0 where uId=#{uId}
+    </update>
+    <update id="defaultAddress2" parameterType="ShoppingAddress">
+        update address set defaultId = 1 where addressId=#{addressId}
+    </update>
+
+</mapper>

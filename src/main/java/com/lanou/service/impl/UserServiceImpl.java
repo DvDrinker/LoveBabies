@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
     public List<User> login(String userName, String password) {
         List<User> users = userMapper.login(userName,password);
-
+        System.out.println(users);
             return users;
 
     }

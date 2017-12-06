@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lanou on 2017/12/2.
@@ -23,22 +25,29 @@ public class UserController {
 
 
     //    根据ID查找用户信息
-    @RequestMapping(value = "/select.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/select.do")
     public void selectUser(Integer userId, HttpServletResponse response) {
         User user = userService.selectUser(userId);
         FastJson.toJson(user, response);
     }
     //登录
-    @RequestMapping(value = "/login.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/login.do")
     public void login(String userName , String password, HttpServletResponse response, HttpSession httpSession) {
         List<User> users = userService.login(userName,password);
         boolean result= false;
         if (users.size()==1){
-            httpSession.setAttribute("users",users);
-            FastJson.toJson(users, response);
+            User user = users.get(0);
+            httpSession.setAttribute("user",user);
+            httpSession.setMaxInactiveInterval(7*24*60*60);
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("userId" ,user.getUserId());
+            map.put("name",user.getName());
+            FastJson.toJson(map , response);
 
+        }else {
+            FastJson.toJson(result,response);
         }
-        FastJson.toJson(result,response);
+
 
     }
 
