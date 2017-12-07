@@ -52,7 +52,7 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "/addUser.do" )
+    @RequestMapping(value = "/addUser.do" ,method = RequestMethod.POST)
     public void addUser(User user , HttpServletResponse response) {
         boolean result = userService.addUser(user);
         Map<String, Object> map = new HashMap<String, Object>();
