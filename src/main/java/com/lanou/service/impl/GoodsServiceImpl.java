@@ -1,6 +1,7 @@
 package com.lanou.service.impl;
 
 import com.lanou.dao.GoodsMapper;
+import com.lanou.entity.CutPage;
 import com.lanou.entity.Goods;
 import com.lanou.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,20 @@ public class GoodsServiceImpl implements GoodsService{
 
     public List<Goods> findLikeKeyword(String keyword, List<Goods> goodsList) {
         return goodsMapper.findLikeKeyword(keyword,goodsList);
+    }
+
+    public List<Goods> findGoodsByPrice(Double maxPrice, Double minPrice, List<Goods> goodss) {
+        return goodsMapper.findGoodsByPrice(maxPrice,minPrice,goodss);
+    }
+
+    public List<Goods> findGoodsBySequence(Integer sequence, List<Goods> goodss) {
+        return goodsMapper.findGoodsBySequence(sequence,goodss);
+    }
+
+    public List<Goods> limitGoods(CutPage page, List<Goods> goodss) {
+        Integer limit1 = (page.getPage()-1)*page.COUNT;
+        Integer limit2 = (page.COUNT);
+        return goodsMapper.limitGoods(limit1,limit2,goodss);
     }
 
 

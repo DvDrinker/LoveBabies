@@ -17,13 +17,23 @@ public interface GoodsMapper {
 
     //排序：上架时间排序；销量排序；价格排序
 
+    public List<Goods> findGoodsByPrice(@Param("maxPrice") Double maxPrice,
+                                        @Param("minPrice") Double minPrice,
+                                        @Param("goodsList") List<Goods> goodss);
+
     public List<Goods> findGoodsByOneClassifyId(@Param("items") List<Integer> integers);
 
     public List<Integer> findGoodsIdByThirdId(@Param("thirdIdList") List<Integer> thirdIdList);
 
     public List<Goods> findGoodsByIdSet(@Param("goodsIds")Set<Integer> goodsIds);
 
+    public List<Goods> findGoodsByIdSet(@Param("goodsIds")List<Integer> goodsIds);
+
     public Goods findGoodsById(Integer goodsId);
 
     public List<Goods> findLikeKeyword(@Param("keyword") String keyword,@Param("goodsList") List<Goods> goodss);
+
+    public List<Goods> findGoodsBySequence(@Param("seq") Integer sequence,@Param("goodsList") List<Goods> goodss);
+
+    public List<Goods> limitGoods(@Param("page") Integer page,@Param("count") Integer count,@Param("goodsList") List<Goods> goodss);
 }

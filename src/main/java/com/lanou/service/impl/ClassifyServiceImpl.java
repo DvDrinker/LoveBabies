@@ -35,6 +35,10 @@ public class ClassifyServiceImpl implements ClassifyService{
         return classify;
     }
 
+    public Classify findSimpleById(Integer classifyId) {
+        return classifyMapper.findSimpleById(classifyId);
+    }
+
 
     //查找所有子分类
     @Transactional

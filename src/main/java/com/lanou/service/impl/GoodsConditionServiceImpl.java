@@ -1,6 +1,8 @@
 package com.lanou.service.impl;
 
 import com.lanou.dao.GoodsConditionMapper;
+import com.lanou.dao.GoodsMapper;
+import com.lanou.entity.Goods;
 import com.lanou.entity.GoodsCondition;
 import com.lanou.service.GoodsConditionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,8 @@ public class GoodsConditionServiceImpl implements GoodsConditionService{
 
     @Autowired
     private GoodsConditionMapper goodsConditionMapper;
-
+    @Autowired
+    private GoodsMapper goodsMapper;
 
     public List<GoodsCondition> findConditions() {
 
@@ -27,7 +30,11 @@ public class GoodsConditionServiceImpl implements GoodsConditionService{
         return goodsConditionMapper.findConditionsByGoods_id(goods_id);
     }
 
-    public List<Integer> getGoodsIdByCondition(String conditionName, String conditionValue, List<Integer> goodIds) {
-        return goodsConditionMapper.getGoodsIdByCondition(conditionName,conditionValue,goodIds);
+    public List<Goods> getGoodsIdByCondition(GoodsCondition condition, List<Goods> goodss) {
+        List<Integer> integers = goodsConditionMapper.getGoodsIdByCondition(condition,goodss);
+        System.out.println(integers);
+        return goodsMapper.findGoodsByIdSet(integers);
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.lanou.service;
 
+import com.lanou.entity.Goods;
 import com.lanou.entity.GoodsCondition;
 
 import java.util.List;
@@ -13,5 +14,5 @@ public interface GoodsConditionService {
 
     public List<GoodsCondition> findConditionsByGoods_id(Integer goods_id);
 
-    public List<Integer> getGoodsIdByCondition(String conditionName,String conditionValue,List<Integer> goodIds);
+    public List<Goods> getGoodsIdByCondition(GoodsCondition condition, List<Goods> goodss);
 }

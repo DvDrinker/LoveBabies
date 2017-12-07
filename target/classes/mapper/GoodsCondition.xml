@@ -20,11 +20,11 @@
 
     <select id="getGoodsIdByCondition" resultType="Integer" >
 
-        SELECT goods_id FROM conditions where condition_name = #{condition_name} and
-        condition_value = #{condition_value}
+        SELECT goods_id FROM conditions where condition_name = #{condition.condition_name} and
+        condition_value = #{condition.condition_value}
         and goods_id in
-        <foreach collection="goodsIds" index="index" item="item" close=")" open="(" separator=",">
-            #{item}
+        <foreach collection="goodsList" index="index" item="item" close=")" open="(" separator=",">
+            #{item.goodsId}
         </foreach>
     </select>
 

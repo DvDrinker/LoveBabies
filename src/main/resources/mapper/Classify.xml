@@ -21,7 +21,13 @@
 		select * from classify where classifyId=#{classifyId}
 	</select>
 
+	<select id="findSimpleById" parameterType="Integer" resultMap="ClassifyResult" >
+		select classifyId,classifyName,classifyParentId from classify where classifyId=#{classifyId}
+	</select>
+
 	<select id="findChildById" parameterType="Integer" resultMap="ClassifyResult" >
 		select * from classify where classifyParentId=#{classifyId}
 	</select>
+
+
 </mapper>

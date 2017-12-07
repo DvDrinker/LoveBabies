@@ -7,5 +7,6 @@ import java.util.List;
 public interface ClassifyMapper {
 	public List<Classify> findFirstClassify(Integer classifyParentId);
 	public Classify findById(Integer classifyId);
+	public Classify findSimpleById(Integer classifyId);
 	public List<Classify> findChildById(Integer classifyId);
 }

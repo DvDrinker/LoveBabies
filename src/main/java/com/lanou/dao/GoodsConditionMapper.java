@@ -1,5 +1,6 @@
 package com.lanou.dao;
 
+import com.lanou.entity.Goods;
 import com.lanou.entity.GoodsCondition;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,6 +15,5 @@ public interface GoodsConditionMapper {
 
     public List<GoodsCondition> findConditionsByGoods_id(Integer goods_id);
 
-    public List<Integer> getGoodsIdByCondition(@Param("condition_name") String conditionName, @Param("condition_value") String conditionValue,
-                                               @Param("goodsIds") List<Integer> goodIds);
+    public List<Integer> getGoodsIdByCondition(@Param("condition") GoodsCondition goodsCondition,@Param("goodsList") List<Goods> goodss);
 }
