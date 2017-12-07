@@ -38,4 +38,8 @@ public interface GoodsMapper {
     public List<Goods> limitGoods(@Param("page") Integer page,@Param("count") Integer count,@Param("goodsList") List<Goods> goodss);
 
     public List<Goods> findGoodsOrderBy(@Param("orderBy")Integer orderBy);
+
+    public List<Integer> findGoodsThirdClassifyId(@Param("goodsName") String goodsName);
+
+
 }
