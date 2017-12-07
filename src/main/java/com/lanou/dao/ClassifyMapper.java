@@ -9,4 +9,6 @@ public interface ClassifyMapper {
 	public Classify findById(Integer classifyId);
 	public Classify findSimpleById(Integer classifyId);
 	public List<Classify> findChildById(Integer classifyId);
+	public List<Classify> findByParentId();
+
 }
