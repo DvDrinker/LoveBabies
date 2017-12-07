@@ -27,7 +27,7 @@
 		SELECT * FROM user where password = #{password} and userName=#{userName}
 	</select>
 	<!--注册-->
-	<insert id="addUser" parameterType="User">
+	<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="userId">
 		INSERT INTO user (userName,password) VALUES (#{userName},#{password})
 	</insert>
 	<!--失焦-->

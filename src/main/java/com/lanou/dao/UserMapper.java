@@ -20,7 +20,7 @@ public interface UserMapper {
 
     public User selectUser(Integer userId);
 
-    public int addUser(@Param("userName") String userName, @Param("password") String password);
+    public int addUser(User user);
 
     public List<User> selectUserName(String userName);
 

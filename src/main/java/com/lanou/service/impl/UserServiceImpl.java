@@ -61,14 +61,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    public boolean addUser(String userName, String password) {
-        System.out.println("我去"+userName);
-        System.out.println(password);
+    public boolean addUser(User user) {
+        System.out.println("我去"+user);
+
         boolean result = false;
-        List<User> users =  userMapper.selectUserName(userName);
+        List<User> users =  userMapper.selectUserName(user.getUserName());
         System.out.println("user的"+users.size());
         if (users.size()==0){
-            int a = userMapper.addUser(userName,password);
+            int a = userMapper.addUser(user);
             if (a == 1) {
                 result = true;
                 return result;

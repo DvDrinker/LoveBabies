@@ -52,12 +52,13 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "/addUser.do" ,method = RequestMethod.POST)
-    public void addUser(String userName, String password, HttpServletResponse response) {
-
-        boolean result = userService.addUser(userName, password);
-       FastJson.toJson(result,response);
-
+    @RequestMapping(value = "/addUser.do" )
+    public void addUser(User user , HttpServletResponse response) {
+        boolean result = userService.addUser(user);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userId" ,user.getUserId());
+        map.put("mes",result);
+        FastJson.toJson(map,response);
     }
     //用户名存在为:false 可用:true
     @RequestMapping(value ="/selectUserName.do",method = RequestMethod.POST)

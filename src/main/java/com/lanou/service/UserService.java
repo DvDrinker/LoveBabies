@@ -12,7 +12,7 @@ public interface UserService {
     public boolean updatePassword(Integer userId, String password ,String password1);
     public User selectUser(Integer userId);
     public boolean updateUser(User user);
-    public boolean addUser(String userName , String password);
+    public boolean addUser(User user);
     public boolean selectUserName(String userName);
     public boolean updateName(User user);
     public boolean updateTelephoneNumber(User user);
