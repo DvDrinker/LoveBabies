@@ -24,11 +24,24 @@
 	<select id="findShoppingCar" resultMap="ShoppingCarResult">
 		select * from shoppingCar s,goods g,user u where s.user_Id=#{userId} and s.goods_Id=g.goodsId and s.user_Id=u.userId and s.deleteId=0
 	</select>
-	
+
+	<select id="findShoppingCarByUserIdAndGoodsId" resultMap="ShoppingCarResult">
+		select * from shoppingCar s,goods g,user u where s.user_Id=#{userId} and s.goods_Id=#{goodsId} and s.goods_Id=g.goodsId and s.user_Id=u.userId and s.deleteId=0
+	</select>
+
+	<update id="updateGoodsCount">
+		update shoppingCar s set goodsCount=#{goodsCount} where s.user_Id=#{userId} and s.goods_Id=#{goodsId} and s.deleteId=0
+	</update>
+
 	<insert id="insertShoppingCar">
 		INSERT INTO shoppingCar(goods_Id,user_Id,goodsCount) VALUES (#{goodsId},#{userId},#{goodsCount})
 	</insert>
 
-
+	<update id="deleteRecord">
+		update shoppingCar s set s.deleteId=1 where s.shoppingCarId IN
+		<foreach collection="shoppingCarIdList" item="shoppingCarId" index="index" separator="," open="(" close=")">
+			#{shoppingCarId}
+		</foreach>
+	</update>
 
 </mapper>

@@ -29,4 +29,20 @@ public class ShoppingCarServiceImpl implements ShoppingCarService{
         List<ShoppingCar> shoppingCars=shoppingCarMapper.findShoppingCar(userId);
         return shoppingCars;
     }
+
+    public ShoppingCar findShoppingCarByUserIdAndGoodsId(Integer goodsId, Integer userId) {
+        ShoppingCar shoppingCar=shoppingCarMapper.findShoppingCarByUserIdAndGoodsId(goodsId,userId);
+        return shoppingCar;
+    }
+
+    public int updateGoodsCount(Integer goodsId, Integer userId, Integer goodsCount) {
+        int number=shoppingCarMapper.updateGoodsCount(goodsId,userId,goodsCount);
+
+        return number;
+    }
+
+    public int deleteRecord(List<Integer> shoppingCarIdList) {
+        int result=shoppingCarMapper.deleteRecord(shoppingCarIdList);
+        return result;
+    }
 }

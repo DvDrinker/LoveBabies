@@ -13,4 +13,13 @@ public interface ShoppingCarMapper {
     public int insertShoppingCar(@Param("goodsId") Integer goodsId,@Param("userId") Integer userId,@Param("goodsCount") Integer goodsCount);
 
     public List<ShoppingCar> findShoppingCar(@Param("userId") Integer userId);
+
+    public ShoppingCar findShoppingCarByUserIdAndGoodsId(@Param("goodsId") Integer goodsId,@Param("userId") Integer userId);
+
+    public int updateGoodsCount(@Param("goodsId") Integer goodsId,@Param("userId") Integer userId,@Param("goodsCount") Integer goodsCount);
+
+    public int deleteRecord(@Param("shoppingCarIdList") List<Integer> shoppingCarIdList);
+
 }
+
+
