@@ -66,7 +66,7 @@ public class UserController {
         FastJson.toJson(result,response);
     }
     //成功true 失败false
-    @RequestMapping(value ="/updateUser.do")
+    @RequestMapping(value ="/updateUser.do",method = RequestMethod.POST)
     public void updateUser(User user,HttpServletResponse response){
 
         if (user.getName()!=null){
