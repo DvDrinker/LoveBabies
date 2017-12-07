@@ -32,4 +32,6 @@ public interface GoodsService {
     public List<Goods> limitGoods(CutPage page,List<Goods> goodss);
 
     public List<Goods> findGoodsOrderBy(Integer orderBy);
+
+    public List<Integer> findGoodsThirdClassifyId(String goodsName);
 }

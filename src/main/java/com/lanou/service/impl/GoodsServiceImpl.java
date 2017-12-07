@@ -73,5 +73,10 @@ public class GoodsServiceImpl implements GoodsService{
         return goodss;
     }
 
+    public List<Integer> findGoodsThirdClassifyId(String goodsName) {
+        List<Integer> thirdClassifyIds=goodsMapper.findGoodsThirdClassifyId(goodsName);
+        return thirdClassifyIds;
+    }
+
 
 }

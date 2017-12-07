@@ -135,6 +135,10 @@
 		limit 9
 	</select>
 
+	<select id="findGoodsThirdClassifyId" resultMap="GoodsResult">
+		SELECT  goodsThirdClassifyId  FROM  goods WHERE  goodsName concat(concat('%',#{goodsName}),'%')
+	</select>
+
 	<!--private Integer goodsId;-->
 	<!--private String goodsName;-->
 	<!--private Double goodsConsultPrice;-->
