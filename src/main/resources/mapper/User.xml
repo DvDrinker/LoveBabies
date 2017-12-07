@@ -13,7 +13,12 @@
 		<result column="userName" property="userName" jdbcType="VARCHAR" />
 		<result column="password" property="password" jdbcType="VARCHAR" />
 	</resultMap>
-
+	<update id="updateName" parameterType="User">
+		update user set  name=#{name} where userId=#{userId}
+	</update>
+	<update id="updateTelephoneNumber" parameterType="User">
+		update user set  telephoneNumber=#{telephoneNumber} where userId=#{userId}
+	</update>
 	<select id="selectUser" resultMap="userResult">
 		SELECT * FROM user where userId = #{userId}
 	</select>
@@ -31,7 +36,7 @@
 	</select>
 	<!--修改-->
   	<update id="updateUser" parameterType="User">
-		update user SET name = #{name} , userName=#{userName} ,email=#{email}  ,
+		update user SET name = #{name} ,email=#{email}  ,
 		city = #{city} , address = #{address} ,telephone = #{telephone} where userId = #{userId}
 	</update>
 	<!--密码-->

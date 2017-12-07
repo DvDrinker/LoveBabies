@@ -87,4 +87,28 @@ public class UserServiceImpl implements UserService {
 
         return false;
     }
+
+    public boolean updateName(User user) {
+        boolean result = false;
+        int a =  userMapper.updateName(user);
+
+        if (a == 1) {
+            result = true;
+            return result;
+        }
+
+        return result;
+    }
+
+    public boolean updateTelephoneNumber(User user) {
+        boolean result = false;
+        int a =  userMapper.updateTelephoneNumber(user);
+
+        if (a == 1) {
+            result = true;
+            return result;
+        }
+
+        return result;
+    }
 }

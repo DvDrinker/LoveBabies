@@ -15,6 +15,8 @@ public interface UserMapper {
     public List<String> selectPasswordByUserId(@Param("userId") Integer userId, @Param("password") String password);
 
     public int updatePassword(@Param("userId") Integer userId, @Param("password1") String password);
+    public int updateName(User user);
+    public int updateTelephoneNumber(User user);
 
     public User selectUser(Integer userId);
 

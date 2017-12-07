@@ -14,4 +14,6 @@ public interface UserService {
     public boolean updateUser(User user);
     public boolean addUser(String userName , String password);
     public boolean selectUserName(String userName);
+    public boolean updateName(User user);
+    public boolean updateTelephoneNumber(User user);
 }

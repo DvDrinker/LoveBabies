@@ -25,7 +25,7 @@ public class UserController {
 
 
     //    根据ID查找用户信息
-    @RequestMapping(value = "/select.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/select.do")
     public void selectUser(Integer userId, HttpServletResponse response) {
         User user = userService.selectUser(userId);
         FastJson.toJson(user, response);
@@ -68,8 +68,16 @@ public class UserController {
     //成功true 失败false
     @RequestMapping(value ="/updateUser.do",method = RequestMethod.POST)
     public void updateUser(User user,HttpServletResponse response){
-        boolean result = userService.updateUser(user);
-        FastJson.toJson(result,response);
+
+        if (user.getName()==null){
+            boolean result = userService.updateUser(user);
+            FastJson.toJson(result,response);
+        }else {
+            boolean result = false;
+            FastJson.toJson(result,response);
+
+        }
+
     }
     //修改成功 true 失败(原密码不正确 false)
     @RequestMapping(value ="/updatePassword.do",method = RequestMethod.POST)
@@ -78,4 +86,30 @@ public class UserController {
 
         FastJson.toJson(result,response);
     }
+    @RequestMapping(value ="/updateName.do" ,method = RequestMethod.POST)
+    public void  updateName(User user,HttpServletResponse response){
+        if (user.getName()!=null){
+            boolean result = userService.updateName(user);
+
+            FastJson.toJson(result,response);
+        }else {
+            boolean result = false;
+            FastJson.toJson(result,response);
+
+        }
+
+    }
+    @RequestMapping(value ="/updateTelephoneNumber.do" ,method = RequestMethod.POST)
+    public void  updateTelephoneNumber(User user,HttpServletResponse response){
+        if(user.getTelephoneNumber()!=null){
+            boolean result = userService.updateTelephoneNumber(user);
+            FastJson.toJson(result,response);
+        }else {
+            boolean result = false;
+            FastJson.toJson(result,response);
+
+        }
+
+    }
+
 }
