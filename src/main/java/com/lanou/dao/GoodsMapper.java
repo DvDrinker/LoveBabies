@@ -36,4 +36,6 @@ public interface GoodsMapper {
     public List<Goods> findGoodsBySequence(@Param("seq") Integer sequence,@Param("goodsList") List<Goods> goodss);
 
     public List<Goods> limitGoods(@Param("page") Integer page,@Param("count") Integer count,@Param("goodsList") List<Goods> goodss);
+
+    public List<Goods> findGoodsOrderBy(@Param("orderBy")Integer orderBy);
 }

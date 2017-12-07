@@ -125,6 +125,16 @@
 	</select>
 
 
+	<select id="findGoodsOrderBy" resultMap="GoodsResult" parameterType="Integer">
+		SELECT  goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1  FROM  goods WHERE  deleteId=0 order by
+		<choose>
+			<when test="orderBy == 1">goodsSalesVolume desc</when>
+			<when test="orderBy == 2">goodsInventory asc</when>
+			<when test="orderBy == 3">goodsGroundingTime desc</when>
+		</choose>
+		limit 9
+	</select>
+
 	<!--private Integer goodsId;-->
 	<!--private String goodsName;-->
 	<!--private Double goodsConsultPrice;-->

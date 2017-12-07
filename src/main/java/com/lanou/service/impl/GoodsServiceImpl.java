@@ -68,5 +68,10 @@ public class GoodsServiceImpl implements GoodsService{
         return goodsMapper.limitGoods(limit1,limit2,goodss);
     }
 
+    public List<Goods> findGoodsOrderBy(Integer orderBy) {
+        List<Goods> goodss=goodsMapper.findGoodsOrderBy(orderBy);
+        return goodss;
+    }
+
 
 }

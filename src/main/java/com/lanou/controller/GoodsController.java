@@ -5,9 +5,11 @@ import com.lanou.service.ClassifyService;
 import com.lanou.service.GoodsConditionService;
 import com.lanou.service.GoodsService;
 import com.lanou.util.FastJson;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -27,6 +29,12 @@ public class GoodsController {
     private ClassifyService classifyService;
     @Autowired
     private GoodsConditionService goodsConditionService;
+
+    @RequestMapping("/findGoodsOrderBy.do")
+    public void findGoodsOrderBy(@RequestParam(required = true,defaultValue = "1") Integer orderBy, HttpServletResponse response){
+        List<Goods> goodss=goodsService.findGoodsOrderBy(orderBy);
+        FastJson.toJson(goodss,response);
+    }
 
     @RequestMapping(value = "/findGoods.do")
     public void findGoods(HttpServletResponse response){
