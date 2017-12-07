@@ -30,4 +30,7 @@
 	</select>
 
 
+	<select id="findByParentId" parameterType="Integer" resultMap="ClassifyResult" >
+		select * from classify where classifyParentId=0
+	</select>
 </mapper>
