@@ -5,7 +5,6 @@ import com.lanou.service.ClassifyService;
 import com.lanou.service.GoodsConditionService;
 import com.lanou.service.GoodsService;
 import com.lanou.util.FastJson;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -132,8 +131,26 @@ public class GoodsController {
 
 
 
-//        //此处构造商品的左侧分类表
-//        List<Classify> classifies= classifyService.findChildById(classifyId);//左侧分类表
+//此处构造商品的左侧分类表
+        List<Classify> classifies= classifyService.findChildById(classifyId);//左侧分类表
+        //请求商品分类数量数据
+        Map<String ,Integer> classifyMap = new HashMap<String, Integer>();
+        for (Goods goods: goodsList1
+                ) {
+            String a ;
+            a = goods.getGoodsThirdClassifyId().toString();
+            if (classifyMap.containsKey(a)){
+                classifyMap.put(a,classifyMap.get(a)+1);
+            }else {
+                classifyMap.put(a,1);
+            }
+
+        }
+
+
+
+
+
         Map<String,Map<String,Integer>> biggerConditionMap = new HashMap<String, Map<String, Integer>>();//用于存放一个属性
         if (goodsList1.size()>0){
             Integer[] goods_ids = new Integer[goodsList1.size()];
@@ -255,6 +272,7 @@ public class GoodsController {
         resultMap.put("cutPage",cutPage);
         resultMap.put("conditions",biggerConditionMap);
         resultMap.put("goodsSize",GoodsNum);
+        resultMap.put("ClassifyCount",classifyMap);
 //        resultMap.put("classifies",classifies);
         FastJson.toJson(resultMap,response);
     }
