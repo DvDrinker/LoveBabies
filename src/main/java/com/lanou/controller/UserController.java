@@ -102,7 +102,7 @@ public class UserController {
     }
     @RequestMapping(value ="/updateTelephoneNumber.do" ,method = RequestMethod.POST)
     public void  updateTelephoneNumber(User user,HttpServletResponse response){
-        System.out.println("phone:"+user.getTelephoneNumber());
+        System.out.println("user:"+user);
         if(user.getTelephoneNumber()!=null){
             boolean result = userService.updateTelephoneNumber(user);
             FastJson.toJson(result,response);
