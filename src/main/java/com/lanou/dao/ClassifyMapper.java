@@ -10,5 +10,7 @@ public interface ClassifyMapper {
 	public Classify findSimpleById(Integer classifyId);
 	public List<Classify> findChildById(Integer classifyId);
 	public List<Classify> findByParentId();
+	public Classify findClassifyByParentId(Integer classifyParentId);
+
 
 }

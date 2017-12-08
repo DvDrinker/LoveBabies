@@ -20,6 +20,7 @@ public class HotController {
     @RequestMapping("/selectHotName.do")
     public void selectHotName(HttpServletResponse response){
         List<String> hotNames=hotService.selectHotName();
+        System.out.println("hotNames:"+hotNames);
         FastJson.toJson(hotNames,response);
     }
 

@@ -33,4 +33,11 @@
 	<select id="findByParentId" parameterType="Integer" resultMap="ClassifyResult" >
 		select * from classify where classifyParentId=0
 	</select>
+
+	<select id="findClassifyByParentId" parameterType="Integer" resultMap="ClassifyResult" >
+		select * from classify where classifyId=#{classifyParentId}
+	</select>
+
+
+
 </mapper>

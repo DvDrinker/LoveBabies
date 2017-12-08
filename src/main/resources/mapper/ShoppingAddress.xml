@@ -17,6 +17,9 @@
     <select id="selectAddress" resultMap="AddressResult">
 		select * from address where uId=#{uId} and deleteId=0
 	</select>
+    <select id="selectAddress1" resultMap="AddressResult">
+		select * from address where addressId=#{addressId} and deleteId=0
+	</select>
     <update id="updateAddress">
 		update address SET name=#{name} , city=#{city} , address=#{address} , phone=#{phone} ,telephone=#{telephone} where addressId=#{addressId}
 	</update>

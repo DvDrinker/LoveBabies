@@ -19,6 +19,13 @@ public class ShoppingAddressServiceImpl implements ShoppingAddressService{
         List<ShoppingAddress> shoppingAddresses = shoppingAddressMapper.selectAddress(shoppingAddress);
         return shoppingAddresses;
     }
+
+    public ShoppingAddress selectAddress1(ShoppingAddress shoppingAddress) {
+        ShoppingAddress shoppingAddress1 =  shoppingAddressMapper.selectAddress1(shoppingAddress);
+
+        return shoppingAddress1;
+    }
+
     public boolean updateAddress(ShoppingAddress shoppingAddress) {
         boolean result = false;
         int a = shoppingAddressMapper.updateAddress(shoppingAddress);

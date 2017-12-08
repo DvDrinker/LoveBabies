@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface ShoppingAddressMapper {
     public List<ShoppingAddress> selectAddress(ShoppingAddress shoppingAddress);
+    public ShoppingAddress selectAddress1(ShoppingAddress shoppingAddress);
     public int updateAddress(ShoppingAddress shoppingAddress);
     public int deleteAddress(ShoppingAddress shoppingAddress);
     public int addAddress(ShoppingAddress shoppingAddress);

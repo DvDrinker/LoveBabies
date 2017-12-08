@@ -100,4 +100,21 @@ public class ClassifyServiceImpl implements ClassifyService{
     }
 
 
+    public Classify findClassifyByParentId(Classify classify){
+        Classify classify1 =classifyMapper.findClassifyByParentId(classify.getClassifyParentId());
+        return classify1;
+    }
+
+    public List<String> findByThirdId(Integer classifyId) {
+        List<String> classifyNameList=new ArrayList<String>();
+        Classify classify=classifyMapper.findById(classifyId);
+        Classify classify1=findClassifyByParentId(classify);
+        Classify classify2=findClassifyByParentId(classify1);
+        classifyNameList.add(classify2.getClassifyName());
+        classifyNameList.add(classify1.getClassifyName());
+        classifyNameList.add(classify.getClassifyName());
+        return classifyNameList;
+    }
+
+
 }
