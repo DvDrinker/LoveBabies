@@ -13,5 +13,6 @@ public interface ClassifyService {
 	public List<Integer> findAllThirdId(Integer classifyId);
 	public List<Classify> findAllThirdName(Integer classifyId);
 	public List<Integer> findByParentId();
+	public List<String> findByThirdId(Integer classifyId);
 	
 }

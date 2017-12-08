@@ -39,6 +39,11 @@ public class ClassifyController {
 
     }
 
-
+    @RequestMapping("/findByThirdId.do")
+    public void findByThirdId(Integer classifyId,HttpServletResponse response){
+        List<String> classifyNameList=classifyService.findByThirdId(classifyId);
+        System.out.println("classifyNameList:"+classifyNameList);
+        FastJson.toJson(classifyNameList,response);
+    }
 
 }
