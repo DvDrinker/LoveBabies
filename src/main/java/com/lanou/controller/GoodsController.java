@@ -79,9 +79,14 @@ public class GoodsController {
         if (keyword == null){//针对keyword为空的情况
             keyword = "";
         }
+        List<Integer> classifyIds;
+        if (classifyId == null || classifyId == 0){
+            classifyIds = classifyService.findByParentId();
+        }
+        else {
+            classifyIds = classifyService.findAllThirdId(classifyId);//根据classifyId得到所有的三级分类
+        }
 
-
-        List<Integer> classifyIds = classifyService.findAllThirdId(classifyId);//根据classifyId得到所有的三级分类
         System.out.println("sequence:"+sequence);
         List<Goods> goodsList = goodsService.findGoodsByOneClassifyId(classifyIds);
         //1.根据得到的三级分类Id集合查询出所有的商品信息
