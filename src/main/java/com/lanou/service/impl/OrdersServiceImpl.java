@@ -28,6 +28,12 @@ public class OrdersServiceImpl implements OrdersService{
         return orderss;
     }
 
+    public Orders findordersOne(Orders orders) {
+        Orders orders1 = ordersMapper.selectOrdersOne(orders);
+
+        return orders1;
+    }
+
     public Integer addOrders(Orders orders) {
          Integer a = ordersMapper.addOrders(orders);
 
@@ -49,6 +55,16 @@ public class OrdersServiceImpl implements OrdersService{
 
     public boolean updateOrderId() {
         return false;
+    }
+
+    public Integer updateBuyId(Orders orders) {
+        Integer a = ordersMapper.updateBuyId(orders);
+        return a;
+    }
+
+    public Integer updateBuyId1(Orders orders) {
+        Integer a = ordersMapper.updateBuyId1(orders);
+        return a;
     }
 
     public boolean updateAddressId(Orders orders) {

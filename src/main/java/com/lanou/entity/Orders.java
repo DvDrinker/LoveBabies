@@ -16,6 +16,15 @@ public class Orders {
     private double trueTotalPrice; //应付款
     private double fare; //运费
     private double balance;//返现
+    private Integer buyId;
+
+    public Integer getBuyId() {
+        return buyId;
+    }
+
+    public void setBuyId(Integer buyId) {
+        this.buyId = buyId;
+    }
 
     public double getTotalPrice() {
         return totalPrice;
@@ -72,6 +81,7 @@ public class Orders {
                 ", trueTotalPrice=" + trueTotalPrice +
                 ", fare=" + fare +
                 ", balance=" + balance +
+                ", buyId=" + buyId +
                 ", orderGoods=" + orderGoods +
                 '}';
     }

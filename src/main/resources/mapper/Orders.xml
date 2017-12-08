@@ -6,12 +6,14 @@
 	<resultMap id="OrdersResult" type="Orders">
 		<id column="orderId" property="orderId" javaType="Integer" />
 		<result column="userId" property="userId" jdbcType="INTEGER" />
+		<result column="buyId" property="buyId" jdbcType="INTEGER" />
 		<result column="deleteId" property="deleteId" jdbcType="INTEGER"/>
 		<result column="mes" property="mes" jdbcType="VARCHAR"/>
 		<result column="totalPrice" property="totalPrice" jdbcType="DOUBLE"/>
 		<result column="trueTotalPrice" property="trueTotalPrice" jdbcType="DOUBLE"/>
 		<result column="fare" property="fare" jdbcType="DOUBLE"/>
 		<result column="balance" property="balance" jdbcType="DOUBLE"/>
+
 		<association property="shoppingAddress" javaType="ShoppingAddress">
 			<id column="addressId"  property="addressId" javaType="integer"/>
 			<result column="name"  property="name" jdbcType="VARCHAR"/>
@@ -38,6 +40,12 @@
 	<update id="updateOrderId" parameterType="Orders">
 		update orders SET deleteId=0 where deleteId=1
 	</update>
+	<update id="updateBuyId" parameterType="Orders">
+		update orders SET buyId=1 where buyId=0 and orderId=#{orderId}
+	</update>
+	<update id="updateBuyId1" parameterType="Orders">
+		update orders SET buyId=2 where buyId=0 and orderId=#{orderId}
+	</update>
 	<update id="updateAddressId" parameterType="Orders">
 		update orders SET addressId=#{addressId}, mes= #{mes} ,totalPrice=#{totalPrice} ,
   			trueTotalPrice=#{trueTotalPrice},balance=#{balance},fare=#{fare} ,deleteId=0 where orderId = #{orderId}
@@ -46,6 +54,10 @@
 	<select id="selectOrders" resultMap="OrdersResult">
 		select * from  orders o,address a, orderGoods d,goods g where o.userId=#{userId} and  o.addressId = a.addressId and
 		 o.orderId = d.order_id and d.goodsId = g.goodsId and o.deleteId=0
+	</select>
+	<select id="selectOrdersOne" resultMap="OrdersResult">
+		select * from  orders o,address a, orderGoods d,goods g where   o.addressId = a.addressId and
+		 o.orderId = d.order_id and d.goodsId = g.goodsId and o.deleteId=0 and o.orderId = #{orderId}
 	</select>
 
 </mapper>

@@ -25,7 +25,7 @@ public class UserController {
 
 
     //    根据ID查找用户信息
-    @RequestMapping(value = "/select.do")
+    @RequestMapping(value = "/select.do" ,method = RequestMethod.POST)
     public void selectUser(Integer userId, HttpServletResponse response) {
         User user = userService.selectUser(userId);
         FastJson.toJson(user, response);

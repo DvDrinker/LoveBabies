@@ -12,8 +12,11 @@ import java.util.List;
  */
 public interface OrdersService {
     public List<Orders> findorders(User user);
+    public Orders findordersOne(Orders orders);
     public Integer addOrders(Orders orders);
     public boolean addOrderGoods(List<OrderGoods> orderGoodss);
     public boolean updateOrderId();
+    public Integer  updateBuyId(Orders orders);
+    public Integer  updateBuyId1(Orders orders);
     public boolean updateAddressId(Orders orders);
 }
