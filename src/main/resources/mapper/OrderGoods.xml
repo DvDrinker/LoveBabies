@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanou.dao.OrdersMapper">
+
+	<resultMap type="orderGoods" id="OrderGoodsResult">
+			<result column="goodsCount" property="goodsCount" jdbcType="INTEGER"/>
+			<collection property="goods" javaType="ArrayList" ofType="Goods">
+				<id column="goodsId" property="goodsId" javaType="Integer" />
+				<result column="goodsName" property="goodsName" jdbcType="VARCHAR" />
+				<result column="goodsInventory" property="goodsInventory" jdbcType="INTEGER" />
+				<result column="goodsMemberPrice" property="goodsMemberPrice" jdbcType="DOUBLE" />
+				<result column="img1" property="img1" jdbcType="VARCHAR" />
+			</collection>
+
+	</resultMap>
+
+
+</mapper>
