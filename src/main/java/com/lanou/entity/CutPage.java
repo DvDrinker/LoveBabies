@@ -5,7 +5,7 @@ package com.lanou.entity;
  */
 public class CutPage {
     private Integer page;
-    public final Integer COUNT = 5;//每页多少个
+    public final Integer COUNT = 12;//每页多少个
     private Integer totalPage;
 
     public CutPage() {

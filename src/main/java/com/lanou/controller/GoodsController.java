@@ -331,5 +331,8 @@ public class GoodsController {
 
 
 
+    public void findGoodsByGoodsId(){
+
+    }
 
 }
