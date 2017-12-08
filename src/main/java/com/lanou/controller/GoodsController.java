@@ -240,7 +240,8 @@ public class GoodsController {
             }
         }
 
-
+        long time2 = System.currentTimeMillis();
+        System.out.println("筛选分类运行时间："+(time2-programTime1));
 
 
 
