@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanou.dao.SizeInfoMapper">
+
+	<resultMap type="SizeInfo" id="sizeInfoResult">
+		<id column="sizeId" property="sizeId" javaType="Integer" />
+		<result column="goodsId" property="goodsId" jdbcType="INTEGER" />
+		<result column="sizeName" property="sizeName" jdbcType="VARCHAR" />
+		<result column="targetId" property="targetId" jdbcType="INTEGER" />
+		<result column="context" property="context" jdbcType="VARCHAR" />
+
+
+	</resultMap>
+	<select id="findSizeInfoByGoodsId" resultMap="sizeInfoResult" >
+		select * from sizeInfo WHERE goodsId = #{goodsId}
+	</select>
+  
+</mapper>
