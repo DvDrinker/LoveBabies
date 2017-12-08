@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanou.dao.HotMapper">
+	<resultMap id="HotResult" type="Hot">
+	</resultMap>
+	<select id="selectHotName" resultMap="HotResult">
+		SELECT hotName from hot where deleteId=0 ORDER BY hotCount DESC limit 4
+	</select>
+	<select id="selectHot" resultMap="HotResult">
+		SELECT * from hot where deleteId=0 AND hotName=#{hotName}
+	</select>
+
+	<insert id="insertHot">
+		INSERT INTO hot(hotName)VALUE(#{hotName})
+	</insert>
+
+	<update id="updateHotCount">
+		UPDATE hot SET hotCount=#{hotCount} where where deleteId=0 AND hotName=#{hotName}
+	</update>
+</mapper>

@@ -4,6 +4,7 @@ import com.lanou.entity.*;
 import com.lanou.service.ClassifyService;
 import com.lanou.service.GoodsConditionService;
 import com.lanou.service.GoodsService;
+import com.lanou.service.HotService;
 import com.lanou.util.FastJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,8 @@ public class GoodsController {
     private ClassifyService classifyService;
     @Autowired
     private GoodsConditionService goodsConditionService;
+    @Autowired
+    private HotService hotService;
 
     @RequestMapping("/findGoodsOrderBy.do")
     public void findGoodsOrderBy(@RequestParam(required = true,defaultValue = "1") Integer orderBy, HttpServletResponse response){
@@ -104,7 +107,7 @@ public class GoodsController {
 
         //3.此处是为了从标签条件中筛选
         if (goodsList1.size()>0){
-
+            hotService.searchHot(keyword);
             if(conditions.getGoodsConditionList() != null){//针对Condition参数为空的情况
 
                 for (GoodsCondition condition:conditions.getGoodsConditionList()
