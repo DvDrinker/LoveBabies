@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import sun.security.provider.SHA;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -23,6 +24,11 @@ public class ShoppingAddressController {
     public void selectAddress(ShoppingAddress shoppingAddress, HttpServletResponse response) {
        List<ShoppingAddress> shoppingAddresses = shoppingAddressService.selectAddress(shoppingAddress);
         FastJson.toJson(shoppingAddresses , response);
+    }
+    @RequestMapping(value="/selectAddress.do",method = RequestMethod.POST)
+    public void selectAddress1(ShoppingAddress shoppingAddress, HttpServletResponse response) {
+       ShoppingAddress shoppingAddress1 = shoppingAddressService.selectAddress1(shoppingAddress);
+       FastJson.toJson(shoppingAddress1, response);
     }
     @RequestMapping(value="/update.do",method = RequestMethod.POST)
     public void updateAddress(ShoppingAddress shoppingAddress,HttpServletResponse response) {

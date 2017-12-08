@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface ShoppingAddressService {
     public List<ShoppingAddress> selectAddress(ShoppingAddress shoppingAddress);
+    public ShoppingAddress selectAddress1(ShoppingAddress shoppingAddress);
     public boolean updateAddress(ShoppingAddress shoppingAddress);
     public boolean deleteAddress(ShoppingAddress shoppingAddress);
     public boolean addAddress(ShoppingAddress shoppingAddress);
