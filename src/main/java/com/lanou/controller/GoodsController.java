@@ -107,7 +107,10 @@ public class GoodsController {
 
         //3.此处是为了从标签条件中筛选
         if (goodsList1.size()>0){
-            hotService.searchHot(keyword);
+            if (keyword==null||keyword.equals("")){
+            }else{
+                hotService.searchHot(keyword);
+            }
             if(conditions.getGoodsConditionList() != null){//针对Condition参数为空的情况
 
                 for (GoodsCondition condition:conditions.getGoodsConditionList()
@@ -133,7 +136,6 @@ public class GoodsController {
         }
 
 
-
 //此处构造商品的左侧分类表
         List<Classify> classifies= classifyService.findChildById(classifyId);//左侧分类表
         //请求商品分类数量数据
@@ -151,49 +153,90 @@ public class GoodsController {
         }
 
 
+        long programTime1 = System.currentTimeMillis();
+        List<Map<String,Object>> condist = new ArrayList<Map<String,Object>>();
 
-
-
-        Map<String,Map<String,Integer>> biggerConditionMap = new HashMap<String, Map<String, Integer>>();//用于存放一个属性
         if (goodsList1.size()>0){
-            Integer[] goods_ids = new Integer[goodsList1.size()];
-            for (int i = 0; i <goods_ids.length ; i++) {
-                goods_ids[i] = goodsList1.get(i).getGoodsId();
-            }
-
-            Map<String,Integer> fewerConditionMap = new HashMap<String, Integer>();//用于存放一个属性值有几个
-
-
-
-            for (int i = 0; i < goods_ids.length; i++) {
-                for (GoodsCondition gc: goodsConditionService.findConditionsByGoods_id(goods_ids[i])
+            for (Goods goods:goodsList1){
+                Integer goodsId1 = goods.getGoodsId();
+                List<GoodsCondition> goodsConditions = goodsConditionService.findConditionsByGoods_id(goodsId1);
+                for (GoodsCondition goodsCondition: goodsConditions
                         ) {
-//                两重for循环是为了找到每一条符合条件的筛选属性数据
-//
+                    int aaa = 0;
+                    for (int i = 0;i < condist.size();i++){
+
+                        if(condist.get(i).get("condition_name").equals(goodsCondition.getCondition_name())){
+                            aaa = 1;
+                            List newList = (List) condist.get(i).get("condition_info");
+                            int bbb = 0;
+                            for (int j = 0;j < newList.size();j++){
+                                Map maps = new HashMap();
+                                maps = (Map) newList.get(j);
+                                if(maps.get("condition_value").equals(goodsCondition.getCondition_value())){
+                                    Integer a = (Integer) maps.get("condition_num");
+                                    maps.put("condition_num",a+1);
+                                    bbb=1;
+
+                                }
+                            }
+                            if (bbb == 0){
+                                Map maps = new HashMap();
+                                maps.put("condition_value",goodsCondition.getCondition_value());
+                                maps.put("condition_num",1);
+
+                                newList.add(maps);
+                            }
 
 
-                    System.out.println(gc);
-                    if (!biggerConditionMap.containsKey(gc.getCondition_name())){
-//                  如果biggerMap中还没有包含有某个属性：例如品牌
-                        fewerConditionMap.put(gc.getCondition_value(),1);
-//
-                        biggerConditionMap.put(gc.getCondition_name(),fewerConditionMap);
-                    }
-                    else {
-                        System.out.println(1);
-                        if (!biggerConditionMap.get(gc.getCondition_name()).containsKey(gc.getCondition_value())){
-                            biggerConditionMap.get(gc.getCondition_name()).put(gc.getCondition_value(),1);
+
                         }
-                        else{
-                            Integer a =  biggerConditionMap.get(gc.getCondition_name()).get(gc.getCondition_value());
-                            a++;
-                            biggerConditionMap.get(gc.getCondition_name()).put(gc.getCondition_value(),a);
-                        }
+
+                    }
+                    if (aaa == 0){
+                        Map<String,Object> biggerConditionMap = new HashMap<String,Object>();//用于存放品牌与列表
+
+                        biggerConditionMap.put("condition_name",goodsCondition.getCondition_name());
+                        List lists = new ArrayList();
+                        biggerConditionMap.put("condition_info",lists);
+                        Map maps = new HashMap();
+                        maps.put("condition_value",goodsCondition.getCondition_value());
+                        maps.put("condition_num",1);
+                        lists.add(maps);
+                        condist.add(biggerConditionMap);
                     }
 
-                    fewerConditionMap = new HashMap<String, Integer>();
+
+//                    for (Map<String,Object> objectMap: condist
+//                         ) {
+//                        a=1;
+//                        if (objectMap.get("name").equals(goodsCondition.getCondition_name())){
+//                            Map<String,Integer> fewerConditionMap = (Map<String, Integer>) objectMap.get("condition");
+//                            if (fewerConditionMap.containsKey(goodsCondition.getCondition_value())){
+//                                fewerConditionMap.put(goodsCondition.getCondition_value(),
+//                                fewerConditionMap.get(goodsCondition.getCondition_value())+1);
+//                                //++
+//                                break;
+//                            }
+//                            else {
+//                                fewerConditionMap.put(goodsCondition.getCondition_value(),
+//                                1);
+//                                break;
+//                            }
+//
+//                        }
+//
+//
+//                    }
+//                if (a == 0){
+//                    Map<String,Integer> fewerConditionMap = new HashMap<String, Integer>();
+//                    fewerConditionMap.put(condition)
+//                    fewerConditionMap.put(goodsCondition.getCondition_value(),1);
+//                    biggerConditionMap.put("name",goodsCondition.getCondition_name());
+//
+//                    condist.add();
+//                }
+
                 }
-
             }
         }
 
@@ -273,7 +316,7 @@ public class GoodsController {
         Map<String,Object> resultMap = new HashMap<String,Object>();
         resultMap.put("goodsList",goodsList1);
         resultMap.put("cutPage",cutPage);
-        resultMap.put("conditions",biggerConditionMap);
+        resultMap.put("conditions",condist);
         resultMap.put("goodsSize",GoodsNum);
         resultMap.put("ClassifyCount",classifyMap);
 //        resultMap.put("classifies",classifies);
