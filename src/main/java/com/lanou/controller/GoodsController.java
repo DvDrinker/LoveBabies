@@ -277,11 +277,11 @@ public class GoodsController {
         CutPage cutPage = new CutPage();
         //7.此处对筛选出的商品进行分页，只留需要页的部分
         if (goodsList1.size()>0){
-
+            cutPage.setCOUNT(12);
             cutPage.setPage(page);
-            int totalPage  =  goodsList1.size()%cutPage.COUNT == 0
-                    ? goodsList1.size()/cutPage.COUNT
-                    : goodsList1.size()/cutPage.COUNT + 1 ;
+            int totalPage  =  goodsList1.size()%cutPage.getCOUNT() == 0
+                    ? goodsList1.size()/cutPage.getCOUNT()
+                    : goodsList1.size()/cutPage.getCOUNT() + 1 ;
 
 
 
