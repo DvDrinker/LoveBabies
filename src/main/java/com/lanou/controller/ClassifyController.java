@@ -28,6 +28,11 @@ public class ClassifyController {
         FastJson.toJson(classifies,response);
 
     }
+    @RequestMapping("/findChildById")
+    public void findChildById(Integer classifyId,HttpServletResponse response){
+        List<Classify>  classifies=classifyService.findChildById(classifyId);
+        FastJson.toJson(classifies,response);
+    }
 
     //查找所有分类
     @RequestMapping("/findClassify.do")
@@ -41,9 +46,19 @@ public class ClassifyController {
 
     @RequestMapping("/findByThirdId.do")
     public void findByThirdId(Integer classifyId,HttpServletResponse response){
-        List<String> classifyNameList=classifyService.findByThirdId(classifyId);
+        List<Classify> classifyNameList=classifyService.findByThirdId(classifyId);
         System.out.println("classifyNameList:"+classifyNameList);
         FastJson.toJson(classifyNameList,response);
+    }
+
+    @RequestMapping("/insertClassify")
+    public void insertClassify(Integer classifyId, String classifyName,HttpServletResponse response){
+        boolean results=false;
+        int result=classifyService.insertClassify(classifyId,classifyName);
+        if (result==1){
+            results=true;
+        }
+        FastJson.toJson(results,response);
     }
 
 }

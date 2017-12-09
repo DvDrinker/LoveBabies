@@ -11,6 +11,7 @@ public interface ClassifyMapper {
 	public List<Classify> findChildById(Integer classifyId);
 	public List<Classify> findByParentId();
 	public Classify findClassifyByParentId(Integer classifyParentId);
+	public int insertClassify(String classifyName,int classifyParentId);
 
 
 }

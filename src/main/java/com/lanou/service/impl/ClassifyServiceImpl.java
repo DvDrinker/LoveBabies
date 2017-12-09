@@ -105,15 +105,22 @@ public class ClassifyServiceImpl implements ClassifyService{
         return classify1;
     }
 
-    public List<String> findByThirdId(Integer classifyId) {
-        List<String> classifyNameList=new ArrayList<String>();
+    public List<Classify> findByThirdId(Integer classifyId) {
+        List<Classify> classifyNameList=new ArrayList<Classify>();
         Classify classify=classifyMapper.findById(classifyId);
         Classify classify1=findClassifyByParentId(classify);
         Classify classify2=findClassifyByParentId(classify1);
-        classifyNameList.add(classify2.getClassifyName());
-        classifyNameList.add(classify1.getClassifyName());
-        classifyNameList.add(classify.getClassifyName());
+        classifyNameList.add(classify2);
+        classifyNameList.add(classify1);
+        classifyNameList.add(classify);
         return classifyNameList;
+    }
+
+    public int insertClassify(Integer classifyId, String classifyName) {
+        //List<Classify> classifies=findFirstClassify(0);
+        //List<Classify> classifies1=classifyMapper.findChildById(classifyId);
+        int result=classifyMapper.insertClassify(classifyName,classifyId);
+        return result;
     }
 
 
