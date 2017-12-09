@@ -38,6 +38,8 @@
 		select * from classify where classifyId=#{classifyParentId}
 	</select>
 
-
+	<insert id="insertClassify">
+		insert into classify(classfiName,classifyParentId)VALUES (#{classfiName},#{classifyParentId})
+	</insert>
 
 </mapper>
