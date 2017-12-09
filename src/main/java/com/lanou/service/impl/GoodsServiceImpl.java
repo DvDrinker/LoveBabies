@@ -63,8 +63,8 @@ public class GoodsServiceImpl implements GoodsService{
     }
 
     public List<Goods> limitGoods(CutPage page, List<Goods> goodss) {
-        Integer limit1 = (page.getPage()-1)*page.COUNT;
-        Integer limit2 = (page.COUNT);
+        Integer limit1 = (page.getPage()-1)*page.getCOUNT();
+        Integer limit2 = (page.getCOUNT());
         return goodsMapper.limitGoods(limit1,limit2,goodss);
     }
 
