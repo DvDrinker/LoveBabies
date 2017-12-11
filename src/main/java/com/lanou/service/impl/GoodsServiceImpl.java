@@ -78,5 +78,9 @@ public class GoodsServiceImpl implements GoodsService{
         return thirdClassifyIds;
     }
 
+    public List<Goods> findHotGoodsByClassifyId(List<Integer> classifyId) {
+        return goodsMapper.getHotGoodsByClassifyId(classifyId);
+    }
+
 
 }

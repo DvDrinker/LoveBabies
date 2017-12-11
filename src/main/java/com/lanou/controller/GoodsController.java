@@ -1,5 +1,6 @@
 package com.lanou.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.lanou.entity.*;
 import com.lanou.service.ClassifyService;
 import com.lanou.service.GoodsConditionService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -257,6 +259,7 @@ public class GoodsController {
 
 
 
+
         //5.此处统计所有符合条件的商品的个数
         Integer GoodsNum = goodsList1.size();
 
@@ -330,9 +333,34 @@ public class GoodsController {
     }
 
 
+    @RequestMapping("/findGoodsByGoodsId.do")
+    public void findGoodsByGoodsId(HttpServletResponse response, Integer goodsId, HttpServletRequest request){
+        Goods goods =  goodsService.findGoodsByGoodsId(goodsId);
 
-    public void findGoodsByGoodsId(){
+        String jsonStr = JSON.toJSONString(goods);
+//        Cookie neededCookie = new Cookie("goods",);
+//        Cookie[] cookies = request.getCookies();
+//        for (Cookie cookie: cookies
+//             ) {
+//            if ("recordedGoods".equals(cookie.getName())){
+//                cookie
+//            }
+//
+//        }
 
+        System.out.println(jsonStr);
+        FastJson.toJson(goods,response);
+    }
+
+
+    //热销榜
+    @RequestMapping("/findHotGoods.do")
+    public void findGoodsHot(HttpServletResponse response,Integer classifyId){
+//        List<Goods> hotGoods = goodsService.findHotGoodsByClassifyId(classifyId);
+//        FastJson.toJson(hotGoods,response);
+       List<Integer> list=  classifyService.findAllThirdId(classifyId);
+       List<Goods> hotGoods = goodsService.findHotGoodsByClassifyId(list);
+        FastJson.toJson(hotGoods,response);
     }
 
 }

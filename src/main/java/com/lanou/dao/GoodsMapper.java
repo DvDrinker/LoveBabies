@@ -41,5 +41,7 @@ public interface GoodsMapper {
 
     public List<Integer> findGoodsThirdClassifyId(@Param("goodsName") String goodsName);
 
+    public List<Goods> getHotGoodsByClassifyId(@Param("items") List<Integer> classifyId);
+
 
 }

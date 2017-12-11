@@ -31,6 +31,19 @@
 		<result column="img4" property="img4" jdbcType="VARCHAR" />
 	</resultMap>
 
+	<select id="getHotGoodsByClassifyId" resultMap="GoodsResult">
+		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1,goodsThirdClassifyId FROM goods
+		<if test="items.size() != 0">
+			where goodsThirdClassifyId IN
+			<foreach item="item" index="index" collection="items" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		order by goodsSalesVolume desc
+		limit 10
+
+	</select>
+
 	<select id="limitGoods" resultMap="GoodsResult">
 		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1,goodsThirdClassifyId FROM goods WHERE goodsId IN
 		<foreach collection="goodsList" index="index" item="item" open="(" separator="," close=")">
