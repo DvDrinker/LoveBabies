@@ -6,7 +6,6 @@ import com.lanou.service.ClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sun.text.resources.cldr.ja.FormatData_ja;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,6 +121,7 @@ public class ClassifyServiceImpl implements ClassifyService{
         int result=classifyMapper.insertClassify(classifyName,classifyId);
         return result;
     }
+
 
 
 }

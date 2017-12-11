@@ -36,4 +36,6 @@ public interface GoodsService {
     public List<Integer> findGoodsThirdClassifyId(String goodsName);
 
     public List<Goods> findHotGoodsByClassifyId(List<Integer> classifyId);
+
+    public List<Goods> getGoodsListByIdList(Integer[] goodsIds);
 }

@@ -29,7 +29,18 @@
 		<result column="img2" property="img2" jdbcType="VARCHAR" />
 		<result column="img3" property="img3" jdbcType="VARCHAR" />
 		<result column="img4" property="img4" jdbcType="VARCHAR" />
+		<result column="introductionImg1" property="introductionImg1" jdbcType="VARCHAR" />
+		<result column="introductionImg2" property="introductionImg2" jdbcType="VARCHAR" />
+		<result column="introductionImg3" property="introductionImg3" jdbcType="VARCHAR" />
+
 	</resultMap>
+
+	<select id="getGoodsListByIdList" resultMap="GoodsResult">
+		SELECT * FROM goods WHERE goodsId IN
+		<foreach item="item" index="index" collection="items" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
 
 	<select id="getHotGoodsByClassifyId" resultMap="GoodsResult">
 		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1,goodsThirdClassifyId FROM goods

@@ -43,5 +43,7 @@ public interface GoodsMapper {
 
     public List<Goods> getHotGoodsByClassifyId(@Param("items") List<Integer> classifyId);
 
+    public List<Goods> getGoodsListByIdList(@Param("items") Integer[] goodsIds);
+
 
 }

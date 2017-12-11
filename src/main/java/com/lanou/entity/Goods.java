@@ -23,6 +23,34 @@ public class Goods {
     private String img3;
     private String img4;
 
+    private String introductionImg1;
+
+    public String getIntroductionImg1() {
+        return introductionImg1;
+    }
+
+    public void setIntroductionImg1(String introductionImg1) {
+        this.introductionImg1 = introductionImg1;
+    }
+
+    public String getIntroductionImg2() {
+        return introductionImg2;
+    }
+
+    public void setIntroductionImg2(String introductionImg2) {
+        this.introductionImg2 = introductionImg2;
+    }
+
+    public String getIntroductionImg3() {
+        return introductionImg3;
+    }
+
+    public void setIntroductionImg3(String introductionImg3) {
+        this.introductionImg3 = introductionImg3;
+    }
+
+    private String introductionImg2;
+
     @Override
     public String toString() {
         return "Goods{" +
@@ -41,8 +69,13 @@ public class Goods {
                 ", img2='" + img2 + '\'' +
                 ", img3='" + img3 + '\'' +
                 ", img4='" + img4 + '\'' +
+                ", introductionImg1='" + introductionImg1 + '\'' +
+                ", introductionImg2='" + introductionImg2 + '\'' +
+                ", introductionImg3='" + introductionImg3 + '\'' +
                 '}';
     }
+
+    private String introductionImg3;
 
     public String getImg1() {
         return img1;

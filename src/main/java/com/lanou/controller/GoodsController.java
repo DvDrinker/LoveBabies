@@ -34,19 +34,24 @@ public class GoodsController {
     @Autowired
     private HotService hotService;
 
+    //通过分类id以及顺序参数获取到商品信息
+    //已弃用
     @RequestMapping("/findGoodsOrderBy.do")
     public void findGoodsOrderBy(@RequestParam(required = true,defaultValue = "1") Integer orderBy, HttpServletResponse response){
         List<Goods> goodss=goodsService.findGoodsOrderBy(orderBy);
         FastJson.toJson(goodss,response);
     }
 
+    //查找所有商品信息
     @RequestMapping(value = "/findGoods.do")
     public void findGoods(HttpServletResponse response){
         FastJson.toJson(goodsService.findGoods(),response);
 
     }
 
-    @RequestMapping(value = "/findGoodsByClassify")
+    //通过分类id以及顺序参数获取到商品信息
+    //已弃用
+    @RequestMapping(value = "/findGoodsByClassify.do")
     public  void findGoodsByClassify(HttpServletResponse response,Integer classifyId,Integer sequence){
         List<Integer> classifyIds = classifyService.findAllThirdId(classifyId);
 
@@ -61,13 +66,23 @@ public class GoodsController {
 
     }
 
-    @RequestMapping(value = "getGoodsById")
+    //根据id数组请求商品详情
+    @RequestMapping(value = "getGoodsListByIdList.do")
+    public void getGoodsListByIdList(HttpServletResponse response,Integer[] goodsIds){
+        List<Goods> goodss = goodsService.getGoodsListByIdList(goodsIds);
+        FastJson.toJson(goodss,response);
+
+    }
+
+    //通过主键获取商品的详细信息
+    @RequestMapping(value = "getGoodsById.do")
     public void getGoodsById(HttpServletResponse response,Integer goodsId){
         Goods goods = goodsService.findGoodsByGoodsId(goodsId);
         FastJson.toJson(goods,response);
 
     }
 
+    //通过参数筛选需要的商品数据
     @RequestMapping(value = "getGoodsByAllConditions.do")
     public void getGoodsByConditions(HttpServletResponse response,//响应；返回json用
                                      Integer classifyId,//分类id
@@ -144,20 +159,64 @@ public class GoodsController {
 
 
 //此处构造商品的左侧分类表
-        List<Classify> classifies= classifyService.findChildById(classifyId);//左侧分类表
+
+
         //请求商品分类数量数据
-        Map<String ,Integer> classifyMap = new HashMap<String, Integer>();
-        for (Goods goods: goodsList1
-                ) {
-            String a ;
-            a = goods.getGoodsThirdClassifyId().toString();
-            if (classifyMap.containsKey(a)){
-                classifyMap.put(a,classifyMap.get(a)+1);
-            }else {
-                classifyMap.put(a,1);
+
+        List<Map<String, Object>> classdist = new ArrayList<Map<String, Object>>();//左侧分类表
+        for (Goods goods:goodsList1){
+            Classify third = classifyService.findSimpleById(goods.getGoodsThirdClassifyId());
+            Classify second = classifyService.findSimpleById(third.getClassifyParentId());
+            Map<String,Object> bigMap = new HashMap<String, Object>();
+            int a = 0;//验证是否进入循环
+            for (int i = 0;i<classdist.size();i++){
+
+                Map usingMap = classdist.get(i);
+                if (second.getClassifyName().equals(((Classify)usingMap.get("secondClassify")).getClassifyName())){
+                    a = 111;
+                    int bbb = 0;
+                    List<Map<String,Object>> list2 = (List<Map<String, Object>>) usingMap.get("secondList");
+                    for (int j = 0;j<list2.size();j++){
+                        Map<String,Object> thirdMap = list2.get(j);
+                        if (third.getClassifyName().equals(((Classify)thirdMap.get("thirdClassify")).getClassifyName())){
+                            System.out.println(((Classify)thirdMap.get("thirdClassify")).getClassifyName());
+                            bbb = 111;
+                            Map<String,Object> littleMap = list2.get(j);
+                            Integer nnn = (Integer) littleMap.get("thirdNum");
+                            littleMap.put("thirdNum",nnn+1);
+
+
+                        }
+                    }
+                    if (bbb == 0){
+                        Map<String,Object> littleMap = new HashMap<String, Object>();
+                        littleMap.put("thirdClassify",third);
+                        littleMap.put("thirdNum",1);
+                        list2.add(littleMap);
+
+                    }
+                }
+            }
+
+            //若if执行，说明还没有在map中找到对应二级分类的值
+            if (a == 0){
+                List<Map<String,Object>> list2 = new ArrayList<Map<String, Object>>();
+                Map<String,Object> littleMap = new HashMap<String,Object>();
+                littleMap.put("thirdClassify",third);
+                littleMap.put("thirdNum",1);
+                list2.add(littleMap);
+
+                bigMap.put("secondClassify",second);
+                bigMap.put("secondList",list2);
+                classdist.add(bigMap);
             }
 
         }
+
+
+
+
+
 
 
         long programTime1 = System.currentTimeMillis();
@@ -250,16 +309,6 @@ public class GoodsController {
         long time2 = System.currentTimeMillis();
         System.out.println("筛选分类运行时间："+(time2-programTime1));
 
-
-
-
-
-
-
-
-
-
-
         //5.此处统计所有符合条件的商品的个数
         Integer GoodsNum = goodsList1.size();
 
@@ -292,18 +341,6 @@ public class GoodsController {
             System.out.println(cutPage);
             goodsList1 = goodsService.limitGoods(cutPage,goodsList1);
         }
-
-
-
-
-
-
-
-
-
-
-
-
 //        if ( sequence == null ){
 //            sequence = 1;
 //
@@ -327,12 +364,12 @@ public class GoodsController {
         resultMap.put("cutPage",cutPage);
         resultMap.put("conditions",condist);
         resultMap.put("goodsSize",GoodsNum);
-        resultMap.put("ClassifyCount",classifyMap);
+        resultMap.put("ClassifyCount",classdist);
 //        resultMap.put("classifies",classifies);
         FastJson.toJson(resultMap,response);
     }
 
-
+    //根据商品id请求商品的详细信息
     @RequestMapping("/findGoodsByGoodsId.do")
     public void findGoodsByGoodsId(HttpServletResponse response, Integer goodsId, HttpServletRequest request){
         Goods goods =  goodsService.findGoodsByGoodsId(goodsId);
@@ -362,5 +399,6 @@ public class GoodsController {
        List<Goods> hotGoods = goodsService.findHotGoodsByClassifyId(list);
         FastJson.toJson(hotGoods,response);
     }
+
 
 }
