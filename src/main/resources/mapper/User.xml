@@ -46,4 +46,8 @@
 	<select id="selectPasswordByUserId" resultMap="userResult" resultType="integer">
 		SELECT password  from user where userId = #{userId} and password = #{password}
 	</select>
+	<select id="selectAllUser" resultMap="userResult" >
+		SELECT  * from user WHERE  deleteId = 0
+	</select>
+
 </mapper>

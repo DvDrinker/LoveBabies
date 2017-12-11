@@ -1,8 +1,10 @@
 package com.lanou.service.impl;
 
 import com.lanou.dao.UserMapper;
+import com.lanou.entity.CutPage;
 import com.lanou.entity.User;
 import com.lanou.service.UserService;
+import com.lanou.util.LimitPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -110,5 +112,11 @@ public class UserServiceImpl implements UserService {
         }
 
         return result;
+    }
+
+    public List<User> selectAllUser() {
+
+        List<User> users = userMapper.selectAllUser();
+        return users;
     }
 }

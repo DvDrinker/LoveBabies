@@ -1,5 +1,6 @@
 package com.lanou.service;
 
+import com.lanou.entity.CutPage;
 import com.lanou.entity.User;
 
 import java.util.List;
@@ -16,4 +17,7 @@ public interface UserService {
     public boolean selectUserName(String userName);
     public boolean updateName(User user);
     public boolean updateTelephoneNumber(User user);
+//    后台管理:用户
+    public List<User> selectAllUser();
+
 }

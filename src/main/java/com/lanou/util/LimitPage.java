@@ -13,7 +13,7 @@ public class LimitPage {
     public List limitList(CutPage page,List limitedList){
         List newList = new ArrayList();
         for (int i = (page.getPage()-1)*page.getCOUNT();i<page.getPage()*page.getCOUNT();i++){
-            if (i >= limitedList.size()){
+            if (i >= limitedList.size()||i<0){
                 break;
             }
             else {
