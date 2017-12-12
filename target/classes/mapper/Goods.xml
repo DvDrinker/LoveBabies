@@ -164,10 +164,9 @@
 	</select>
 
 	<update id="reduceSaleVolume">
-		UPDATE goods SET goodsSalesVolume,goodsInventory =
-		(SELECT goodsSalesVolume FROM goods WHERE goodsId = #{goodsId})+#{num},
-		(SELECT goodsInventory FROM goods WHERE goodsId = #{goodsId}-#{num})
-		where goodsId = #{goodsId}
+		UPDATE goods SET goodsSalesVolume=#{goodsSalesVolume} ,
+		goodsInventory =#{goodsInventory}
+		 where goodsId = #{goodsId}
 	</update>
 
 	<!--private Integer goodsId;-->

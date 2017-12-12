@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanou.dao.AttributeMapper">
+
+	<resultMap type="Attribute" id="attributeResult">
+		<id column="aId" property="aId" javaType="Integer" />
+		<result column="goodsId" property="goodsId" jdbcType="INTEGER" />
+		<result column="userId" property="userId" jdbcType="INTEGER" />
+	</resultMap>
+
+	<!--查找用户收藏-->
+	<select id="findAttribute" resultMap="attributeResult" >
+		select * from Attribute where userId = #{userId} and deleteId = 0
+	</select>
+
+	<!--添加收藏-->
+	<insert id="addAttribute" >
+		INSERT INTO Attribute (goodsId,userId) VALUES (#{attribute.goodsId},#{attribute.userId})
+	</insert>
+
+	<!--删除收藏-->
+	<update id="deleteAttribute">
+		UPDATE Attribute SET deleteId = 1 where aId = #{aId}
+	</update>
+</mapper>
