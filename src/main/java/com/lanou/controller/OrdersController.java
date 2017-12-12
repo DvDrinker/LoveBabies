@@ -27,7 +27,7 @@ public class OrdersController {
     private OrdersService ordersService;
     @Autowired
     private GoodsService goodsService;
-    @RequestMapping(value = "/updateBuyId.do" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/updateBuyId.do" )
     public void updateBuyId(Orders orders , HttpServletResponse response){
         Map<String, Object> map = new HashMap<String, Object>();
         Integer integer = ordersService.updateBuyId(orders);
@@ -41,7 +41,7 @@ public class OrdersController {
         }
 
     }
-    @RequestMapping(value = "/updateBuyId1.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/updateBuyId1.do")
     public void updateBuyId1(Orders orders , HttpServletResponse response){
         Map<String, Object> map = new HashMap<String, Object>();
        Integer integer = ordersService.updateBuyId1(orders);
@@ -53,12 +53,12 @@ public class OrdersController {
             FastJson.toJson(map,response);
         }
     }
-    @RequestMapping(value = "/findOrders.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/findOrders.do")
     public void findorders(User user , HttpServletResponse response){
         List<Orders> orderslist = ordersService.findorders(user);
         FastJson.toJson(orderslist,response);
     }
-    @RequestMapping(value = "/findOrdersOne.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/findOrdersOne.do")
     public void findordersOne(Orders orders, HttpServletResponse response){
        Orders orders1 = ordersService.findordersOne(orders);
         FastJson.toJson(orders1,response);
@@ -100,7 +100,7 @@ public class OrdersController {
      boolean result = ordersService.addOrderGoods(orderGoodss);
         FastJson.toJson(result,response);
     }
-    @RequestMapping(value = "/addOrders.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/addOrders.do")
     public void addorders(Orders orders , HttpServletResponse response){
         Integer a = ordersService.addOrders(orders);
         int aa = orders.getOrderId();
