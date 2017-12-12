@@ -163,6 +163,13 @@
 		SELECT  goodsThirdClassifyId  FROM  goods WHERE  goodsName concat(concat('%',#{goodsName}),'%')
 	</select>
 
+	<update id="reduceSaleVolume">
+		UPDATE goods SET goodsSalesVolume,goodsInventory =
+		(SELECT goodsSalesVolume FROM goods WHERE goodsId = #{goodsId})+#{num},
+		(SELECT goodsInventory FROM goods WHERE goodsId = #{goodsId}-#{num})
+		where goodsId = #{goodsId}
+	</update>
+
 	<!--private Integer goodsId;-->
 	<!--private String goodsName;-->
 	<!--private Double goodsConsultPrice;-->

@@ -38,4 +38,6 @@ public interface GoodsService {
     public List<Goods> findHotGoodsByClassifyId(List<Integer> classifyId);
 
     public List<Goods> getGoodsListByIdList(Integer[] goodsIds);
+
+    public void changeSaleVolumeAndInventory(Integer goodsId,Integer num);
 }
