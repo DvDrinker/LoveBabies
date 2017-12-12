@@ -407,4 +407,15 @@ public class GoodsController {
 
     }
 
+    @RequestMapping("/findConditionList.do")
+    public void findConditionListByGoodsId(HttpServletResponse response,Integer[] goodsIds){
+        List list = new ArrayList();
+
+        for (Integer goods:goodsIds){
+            list.add(goodsConditionService.findConditionsByGoods_id(goods));
+        }
+
+        FastJson.toJson(list,response);
+    }
+
 }
