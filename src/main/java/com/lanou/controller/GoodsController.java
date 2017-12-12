@@ -400,5 +400,11 @@ public class GoodsController {
         FastJson.toJson(hotGoods,response);
     }
 
+    @RequestMapping("/findConditionsByGoodsId.do")
+    public void findConditionsByGoodsId(HttpServletResponse response,Integer goodsId){
+       List<GoodsCondition> conditions =  goodsConditionService.findConditionsByGoods_id(goodsId);
+       FastJson.toJson(conditions,response);
+
+    }
 
 }
