@@ -61,7 +61,9 @@ public class OrdersController {
     @RequestMapping(value = "/findOrdersOne.do")
     public void findordersOne(Orders orders, HttpServletResponse response){
        Orders orders1 = ordersService.findordersOne(orders);
-        FastJson.toJson(orders1,response);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("orders",orders1);
+        FastJson.toJson(map,response);
     }
     @RequestMapping(value = "/addOrderGoods.do")
     public void addOrderGoods(Integer[] goodsId,Integer[] goodsCount,Orders orders,  HttpServletResponse response){
