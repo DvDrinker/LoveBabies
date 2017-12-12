@@ -1,10 +1,11 @@
 package com.lanou.controller;
 
-import com.lanou.entity.OrderGoods;
-import com.lanou.entity.Orders;
-import com.lanou.entity.User;
+import com.lanou.entity.*;
+import com.lanou.service.GoodsService;
 import com.lanou.service.OrdersService;
 import com.lanou.util.FastJson;
+import com.lanou.util.LimitPage;
+import javafx.scene.shape.Mesh;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +21,12 @@ import java.util.Map;
  * Created by lanou on 2017/12/2.
  */
 @Controller
-@RequestMapping(value="/orders",method = RequestMethod.POST)
+@RequestMapping(value="/orders")
 public class OrdersController {
     @Autowired
     private OrdersService ordersService;
+    @Autowired
+    private GoodsService goodsService;
     @RequestMapping(value = "/updateBuyId.do" ,method = RequestMethod.POST)
     public void updateBuyId(Orders orders , HttpServletResponse response){
         Map<String, Object> map = new HashMap<String, Object>();
@@ -60,16 +63,38 @@ public class OrdersController {
        Orders orders1 = ordersService.findordersOne(orders);
         FastJson.toJson(orders1,response);
     }
-    @RequestMapping(value = "/addOrderGoods.do",method = RequestMethod.POST)
+    @RequestMapping(value = "/addOrderGoods.do")
     public void addOrderGoods(Integer[] goodsId,Integer[] goodsCount,Orders orders,  HttpServletResponse response){
+
         List<OrderGoods> orderGoodss =new ArrayList<OrderGoods>();
+        List<Integer> sums = new ArrayList<Integer>();
         for (int i = 0; i<goodsCount.length ; i++) {
+            Goods goods = goodsService.findGoodsByGoodsId(goodsId[i]);
+            int sum = goods.getGoodsInventory()-goodsCount[i];
+            if (sum<0){
+                Map<String, Object> map = new HashMap<String, Object>();
+                map.put("商品id为"+goodsId[i]+"库存为:",goods.getGoodsInventory());
+                String mes="库存不足";
+                map.put("mes",mes);
+                FastJson.toJson(map,response);
+                break;
+
+            }
+//            -----调皮-----
+            Integer a  = goods.getGoodsInventory()-goodsCount[i];
+             Integer b = goods.getGoodsSalesVolume()+goodsCount[i];
+            System.out.println(a);
+            System.out.println(b);
+
+            goodsService.changeSaleVolumeAndInventory(goodsId[i],a,b);
             OrderGoods orderGoods =new OrderGoods();
             orderGoods.setGoodsId(goodsId[i]);
             orderGoods.setOrder_id(orders.getOrderId());
             orderGoods.setGoodsCount(goodsCount[i]);
             orderGoodss.add(orderGoods);
+
         }
+
         System.out.println("jihe:"+orderGoodss);
         boolean res = ordersService.updateAddressId(orders);
      boolean result = ordersService.addOrderGoods(orderGoodss);
@@ -88,4 +113,21 @@ public class OrdersController {
            FastJson.toJson( result,response);
        }
     }
+
+    @RequestMapping(value = "/selectOrdersByOrderId.do")
+    public void selectOrdersEveryOne(Orders orders, CutPage cutPage,HttpServletResponse response){
+        List<Orders> orderss = ordersService.selectOrdersEveryOne(orders);
+        cutPage.setCOUNT(4);
+        LimitPage limitPage  =new LimitPage();
+        List<Orders> orderss1 = limitPage.limitList(cutPage,orderss);
+        int totalPage  =  orderss.size()%cutPage.getCOUNT() == 0
+                ? orderss.size()/cutPage.getCOUNT()
+                : orderss.size()/cutPage.getCOUNT() + 1 ;
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("总页数:", totalPage);
+        map.put("第"+cutPage.getPage()+"页:",orderss1);
+        FastJson.toJson(map,response);
+    }
+
+
 }

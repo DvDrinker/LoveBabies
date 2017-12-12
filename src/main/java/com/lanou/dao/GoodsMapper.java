@@ -45,7 +45,7 @@ public interface GoodsMapper {
 
     public List<Goods> getGoodsListByIdList(@Param("items") Integer[] goodsIds);
 
-    public List<Goods> reduceSaleVolume(@Param("goodsId")Integer goodsId,@Param("num") Integer num);
+    public void reduceSaleVolume(@Param("goodsId")Integer goodsId,@Param("goodsInventory") Integer goodsInventory,@Param("goodsSalesVolume") Integer goodsSalesVolume);
 
 
 }

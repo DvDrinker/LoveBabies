@@ -4,6 +4,7 @@ import com.lanou.entity.Floor;
 import com.lanou.entity.OrderGoods;
 import com.lanou.entity.Orders;
 import com.lanou.entity.User;
+import org.springframework.core.annotation.Order;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  */
 public interface OrdersService {
     public List<Orders> findorders(User user);
+    public List<Orders> selectOrdersEveryOne(Orders orders);
     public Orders findordersOne(Orders orders);
     public Integer addOrders(Orders orders);
     public boolean addOrderGoods(List<OrderGoods> orderGoodss);

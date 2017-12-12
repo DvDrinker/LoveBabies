@@ -39,5 +39,5 @@ public interface GoodsService {
 
     public List<Goods> getGoodsListByIdList(Integer[] goodsIds);
 
-    public void changeSaleVolumeAndInventory(Integer goodsId,Integer num);
+    public void changeSaleVolumeAndInventory(Integer goodsId,Integer goodsInventory,Integer goodsSalesVolume);
 }

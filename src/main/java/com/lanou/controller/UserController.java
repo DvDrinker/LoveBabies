@@ -130,9 +130,6 @@ public class UserController {
         cutPage.setCOUNT(count);
         LimitPage limitPage = new LimitPage();
         List<User> users = userService.selectAllUser();
-        if (cutPage.getPage()<=0){
-
-        }
         List<User> users1 = limitPage.limitList(cutPage,users);
         int totalPage  =  users.size()%cutPage.getCOUNT() == 0
                 ? users.size()/cutPage.getCOUNT()

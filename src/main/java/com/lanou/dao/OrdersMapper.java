@@ -12,6 +12,7 @@ import java.util.List;
  */
 public interface OrdersMapper {
     public List<Orders> selectOrders(User user);
+    public List<Orders> selectOrdersEveryOne(Orders orders);
     public Orders selectOrdersOne(Orders orders);
     public Integer addOrders(Orders orders);
     public Integer addOrderGoods(@Param("orderGoodss") List<OrderGoods> orderGoodss);

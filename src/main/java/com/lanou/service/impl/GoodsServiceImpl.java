@@ -86,8 +86,8 @@ public class GoodsServiceImpl implements GoodsService{
         return goodsMapper.getGoodsListByIdList(goodsIds);
     }
 
-    public void changeSaleVolumeAndInventory(Integer goodsId, Integer num) {
-        goodsMapper.reduceSaleVolume(goodsId,num);
+    public void changeSaleVolumeAndInventory(Integer goodsId,Integer goodsInventory,Integer goodsSalesVolume) {
+        goodsMapper.reduceSaleVolume(goodsId, goodsInventory,goodsSalesVolume);
     }
 
 
