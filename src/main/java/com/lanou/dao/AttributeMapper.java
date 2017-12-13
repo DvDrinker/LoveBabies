@@ -15,4 +15,8 @@ public interface AttributeMapper {
 
     public void deleteAttribute(@Param("aId") Integer aId);
 
+    public void deleteAttributeList(@Param("aIds")Integer[] aIds);
+
+    public void testAttribute(@Param("goodsId") Integer goodsId,@Param("userId") Integer userId);
+
 }

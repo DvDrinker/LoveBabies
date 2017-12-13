@@ -15,4 +15,6 @@ public interface AttributeService {
 
     public void deleteAttribute(Integer aId);
 
+    public void deleteAttributeList(Integer[] aIds);
+
 }

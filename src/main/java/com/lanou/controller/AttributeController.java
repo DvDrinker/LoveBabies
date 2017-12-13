@@ -28,7 +28,7 @@ public class AttributeController {
         User user = (User) session.getAttribute("user");
         System.out.println(user);
         if (user == null){
-            FastJson.toJson(null,response);
+            FastJson.toJson("noLogin",response);
         }
         else {
             List<Attribute> attributes = attributeService.findAttribute(user.getUserId());
@@ -54,10 +54,17 @@ public class AttributeController {
             FastJson.toJson(jsonStr,response);
         }
     }
-
+//    单个删除
     @RequestMapping("/deleteAttribute.do")
     public void deleteAttribute(Integer aId,HttpServletResponse response){
         attributeService.deleteAttribute(aId);
         FastJson.toJson("deleteSucess",response);
+    }
+//  批量删除
+    @RequestMapping("/deleteAttributeList.do")
+    public void deleteAttributeList(Integer[] aIds,HttpServletResponse response){
+        attributeService.deleteAttributeList(aIds);
+        FastJson.toJson("deleteSuccess",response);
+
     }
 }

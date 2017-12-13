@@ -18,10 +18,79 @@ public class Goods {
     private Integer deleteId;
     private String goodsNum;
 
-    private String img1;
-    private String img2;
-    private String img3;
-    private String img4;
+    private String img1_l;
+    private String img1_b;
+    private String img2_l;
+    private String img2_b;
+    private String img3_l;
+    private String img3_b;
+    private String img4_l;
+
+    public String getImg1_l() {
+        return img1_l;
+    }
+
+    public void setImg1_l(String img1_l) {
+        this.img1_l = img1_l;
+    }
+
+    public String getImg1_b() {
+        return img1_b;
+    }
+
+    public void setImg1_b(String img1_b) {
+        this.img1_b = img1_b;
+    }
+
+    public String getImg2_l() {
+        return img2_l;
+    }
+
+    public void setImg2_l(String img2_l) {
+        this.img2_l = img2_l;
+    }
+
+    public String getImg2_b() {
+        return img2_b;
+    }
+
+    public void setImg2_b(String img2_b) {
+        this.img2_b = img2_b;
+    }
+
+    public String getImg3_l() {
+        return img3_l;
+    }
+
+    public void setImg3_l(String img3_l) {
+        this.img3_l = img3_l;
+    }
+
+    public String getImg3_b() {
+        return img3_b;
+    }
+
+    public void setImg3_b(String img3_b) {
+        this.img3_b = img3_b;
+    }
+
+    public String getImg4_l() {
+        return img4_l;
+    }
+
+    public void setImg4_l(String img4_l) {
+        this.img4_l = img4_l;
+    }
+
+    public String getImg4_b() {
+        return img4_b;
+    }
+
+    public void setImg4_b(String img4_b) {
+        this.img4_b = img4_b;
+    }
+
+    private String img4_b;
 
     private String introductionImg1;
 
@@ -65,10 +134,14 @@ public class Goods {
                 ", goodsGroundingTime=" + goodsGroundingTime +
                 ", deleteId=" + deleteId +
                 ", goodsNum='" + goodsNum + '\'' +
-                ", img1='" + img1 + '\'' +
-                ", img2='" + img2 + '\'' +
-                ", img3='" + img3 + '\'' +
-                ", img4='" + img4 + '\'' +
+                ", img1_l='" + img1_l + '\'' +
+                ", img1_b='" + img1_b + '\'' +
+                ", img2_l='" + img2_l + '\'' +
+                ", img2_b='" + img2_b + '\'' +
+                ", img3_l='" + img3_l + '\'' +
+                ", img3_b='" + img3_b + '\'' +
+                ", img4_l='" + img4_l + '\'' +
+                ", img4_b='" + img4_b + '\'' +
                 ", introductionImg1='" + introductionImg1 + '\'' +
                 ", introductionImg2='" + introductionImg2 + '\'' +
                 ", introductionImg3='" + introductionImg3 + '\'' +
@@ -77,37 +150,6 @@ public class Goods {
 
     private String introductionImg3;
 
-    public String getImg1() {
-        return img1;
-    }
-
-    public void setImg1(String img1) {
-        this.img1 = img1;
-    }
-
-    public String getImg2() {
-        return img2;
-    }
-
-    public void setImg2(String img2) {
-        this.img2 = img2;
-    }
-
-    public String getImg3() {
-        return img3;
-    }
-
-    public void setImg3(String img3) {
-        this.img3 = img3;
-    }
-
-    public String getImg4() {
-        return img4;
-    }
-
-    public void setImg4(String img4) {
-        this.img4 = img4;
-    }
 
     public Integer getGoodsId() {
         return goodsId;

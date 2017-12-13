@@ -10,9 +10,13 @@
 		<result column="userId" property="userId" jdbcType="INTEGER" />
 	</resultMap>
 
+	<select id="testAttribute" resultMap="attributeResult">
+		SELECT * FROM Attribute WHERE userId = #{userId},goodsId=#{goodsId}
+	</select>
+
 	<!--查找用户收藏-->
 	<select id="findAttribute" resultMap="attributeResult" >
-		select * from Attribute where userId = #{userId} and deleteId = 0
+		select * from Attribute where userId = #{userId}
 	</select>
 
 	<!--添加收藏-->
@@ -21,7 +25,15 @@
 	</insert>
 
 	<!--删除收藏-->
-	<update id="deleteAttribute">
-		UPDATE Attribute SET deleteId = 1 where aId = #{aId}
+	<delete id="deleteAttribute">
+		DELETE FROM Attribute where aId = #{aId}
+	</delete>
+
+	<!--批量删除收藏-->
+	<update id="deleteAttributeList">
+		DELETE FROM Attribute where aId IN
+		<foreach collection="aIds" index="index" item="aId" open="(" separator="," close=")">
+			#{aId}
+		</foreach>
 	</update>
 </mapper>

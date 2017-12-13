@@ -27,4 +27,8 @@ public class AttributeServiceImpl implements AttributeService{
     public void deleteAttribute(Integer aId) {
         attributeMapper.deleteAttribute(aId);
     }
+
+    public void deleteAttributeList(Integer[] aIds) {
+        attributeMapper.deleteAttributeList(aIds);
+    }
 }

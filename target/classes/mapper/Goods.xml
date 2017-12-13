@@ -25,10 +25,14 @@
 		<result column="goodsGroundingTime" property="goodsGroundingTime" jdbcType="DATE" />
 		<result column="deleteId" property="deleteId" jdbcType="INTEGER" />
 		<result column="goodsNum" property="goodsNum" jdbcType="VARCHAR" />
-		<result column="img1" property="img1" jdbcType="VARCHAR" />
-		<result column="img2" property="img2" jdbcType="VARCHAR" />
-		<result column="img3" property="img3" jdbcType="VARCHAR" />
-		<result column="img4" property="img4" jdbcType="VARCHAR" />
+		<result column="img1_l" property="img1_l" jdbcType="VARCHAR" />
+		<result column="img1_b" property="img1_b" jdbcType="VARCHAR" />
+		<result column="img2_l" property="img2_l" jdbcType="VARCHAR" />
+		<result column="img2_b" property="img2_b" jdbcType="VARCHAR" />
+		<result column="img3_l" property="img3_l" jdbcType="VARCHAR" />
+		<result column="img3_b" property="img3_b" jdbcType="VARCHAR" />
+		<result column="img4_l" property="img4_l" jdbcType="VARCHAR" />
+		<result column="img4_b" property="img4_b" jdbcType="VARCHAR" />
 		<result column="introductionImg1" property="introductionImg1" jdbcType="VARCHAR" />
 		<result column="introductionImg2" property="introductionImg2" jdbcType="VARCHAR" />
 		<result column="introductionImg3" property="introductionImg3" jdbcType="VARCHAR" />
@@ -43,7 +47,7 @@
 	</select>
 
 	<select id="getHotGoodsByClassifyId" resultMap="GoodsResult">
-		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1,goodsThirdClassifyId FROM goods
+		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1_l,goodsThirdClassifyId FROM goods
 		<if test="items.size() != 0">
 			where goodsThirdClassifyId IN
 			<foreach item="item" index="index" collection="items" open="(" separator="," close=")">
@@ -56,7 +60,7 @@
 	</select>
 
 	<select id="limitGoods" resultMap="GoodsResult">
-		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1,goodsThirdClassifyId FROM goods WHERE goodsId IN
+		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1_l,goodsThirdClassifyId FROM goods WHERE goodsId IN
 		<foreach collection="goodsList" index="index" item="item" open="(" separator="," close=")">
 			#{item.goodsId}
 		</foreach>
@@ -65,7 +69,7 @@
 	</select>
 
 	<select id="findGoodsBySequence" resultMap="GoodsResult">
-		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1,goodsThirdClassifyId FROM goods WHERE goodsId IN
+		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1_l,goodsThirdClassifyId FROM goods WHERE goodsId IN
 		<foreach collection="goodsList" index="index" item="item" open="(" separator="," close=")">
 			#{item.goodsId}
 		</foreach>
@@ -87,7 +91,7 @@
 	</select>
 
 	<select id="findGoodsByPrice" resultMap="GoodsResult">
-		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1,goodsThirdClassifyId FROM goods WHERE goodsMemberPrice <![CDATA[>=]]> #{minPrice}
+		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1_l,goodsThirdClassifyId FROM goods WHERE goodsMemberPrice <![CDATA[>=]]> #{minPrice}
 			and goodsMemberPrice <![CDATA[<=]]> #{maxPrice}
 			and goodsId in
 		<foreach collection="goodsList" index="index" item="item" open="(" separator="," close=")">
@@ -97,7 +101,7 @@
 
 	<!--//在一个已有的goods集合中模糊查询-->
 	<select id="findLikeKeyword" resultMap="GoodsResult">
-		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1,goodsThirdClassifyId FROM goods where goodsName LIKE concat(concat('%',#{keyword}),'%') and goodsId in
+		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1_l,goodsThirdClassifyId FROM goods where goodsName LIKE concat(concat('%',#{keyword}),'%') and goodsId in
 		<foreach collection="goodsList" index="index" item="item" open="(" separator="," close=")">
 			#{item.goodsId}
 		</foreach>
@@ -107,7 +111,7 @@
 
 	<!--输入顺序参数和分类，得到对应顺序的所有分类下的商品信息-->
 	<select id="findGoodsByClassifyId" resultMap="GoodsResult" >
-		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1,goodsThirdClassifyId from goods WHERE goodsThirdClassifyId IN
+		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1_l,goodsThirdClassifyId from goods WHERE goodsThirdClassifyId IN
 		<foreach item="item" index="index" collection="items" open="(" separator="," close=")">
 			#{item}
 		</foreach>
@@ -123,7 +127,7 @@
 
 	<!--传入classify取它下面的商品信息-->
 	<select id="findGoodsByOneClassifyId" resultMap="GoodsResult" >
-		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1 from goods WHERE goodsThirdClassifyId IN
+		SELECT goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1_l from goods WHERE goodsThirdClassifyId IN
 	<foreach item="item" index="index" collection="items" open="(" separator="," close=")">
 		#{item}
 	</foreach>
@@ -150,7 +154,7 @@
 
 
 	<select id="findGoodsOrderBy" resultMap="GoodsResult" parameterType="Integer">
-		SELECT  goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1  FROM  goods WHERE  deleteId=0 order by
+		SELECT  goodsId,goodsName,goodsConsultPrice,goodsMemberPrice,img1_l  FROM  goods WHERE  deleteId=0 order by
 		<choose>
 			<when test="orderBy == 1">goodsSalesVolume desc</when>
 			<when test="orderBy == 2">goodsInventory asc</when>
