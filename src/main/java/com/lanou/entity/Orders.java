@@ -1,5 +1,8 @@
 package com.lanou.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -67,6 +70,15 @@ public class Orders {
     }
 
     private List<OrderGoods> orderGoods;
+    private Date startTime;
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
 
     @Override
     public String toString() {
@@ -83,6 +95,7 @@ public class Orders {
                 ", balance=" + balance +
                 ", buyId=" + buyId +
                 ", orderGoods=" + orderGoods +
+                ", startTime=" + startTime +
                 '}';
     }
 

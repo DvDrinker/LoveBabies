@@ -1,7 +1,9 @@
 package com.lanou.controller;
 
 import com.lanou.entity.CutPage;
+import com.lanou.entity.Orders;
 import com.lanou.entity.User;
+import com.lanou.service.OrdersService;
 import com.lanou.service.UserService;
 import com.lanou.util.FastJson;
 import com.lanou.util.LimitPage;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +28,8 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private OrdersService ordersService;
 
     //    根据ID查找用户信息
     @RequestMapping(value = "/select.do")
@@ -34,13 +39,27 @@ public class UserController {
     }
 
     //登录
-    @RequestMapping(value = "/login.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/login.do")
     public void login(String userName, String password, HttpServletResponse response, HttpSession httpSession) {
 
         List<User> users = userService.login(userName, password);
         boolean result = false;
         if (users.size() == 1) {
+           Date date1 =  new Date();// new Date()为获取当前系统时间
             User user = users.get(0);
+            List<Orders> orderss = ordersService.findorders(user);
+            for (int i = 0; i<orderss.size() ; i++){
+                Orders orders = orderss.get(i);
+                if (orders.getStartTime()==null){
+                    continue;
+                }
+                Date date2 =orders.getStartTime();
+                long l = date1.getTime() - date2.getTime();
+                long hour = l / (60 * 60 * 1000);
+                if (hour>=6){
+                    ordersService.updateBuyId1(orders);
+                }
+            }
             httpSession.setAttribute("user", user);
             httpSession.setMaxInactiveInterval(7 * 24 * 60 * 60);
             Map<String, Object> map = new HashMap<String, Object>();

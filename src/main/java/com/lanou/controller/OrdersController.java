@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by lanou on 2017/12/2.
@@ -96,8 +94,10 @@ public class OrdersController {
             orderGoodss.add(orderGoods);
 
         }
-
+//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+//         df.format(new Date());// new Date()为获取当前系统时间
         System.out.println("jihe:"+orderGoodss);
+        orders.setStartTime(new Date());
         boolean res = ordersService.updateAddressId(orders);
      boolean result = ordersService.addOrderGoods(orderGoodss);
         FastJson.toJson(result,response);

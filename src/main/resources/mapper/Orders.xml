@@ -13,7 +13,7 @@
 		<result column="trueTotalPrice" property="trueTotalPrice" jdbcType="DOUBLE"/>
 		<result column="fare" property="fare" jdbcType="DOUBLE"/>
 		<result column="balance" property="balance" jdbcType="DOUBLE"/>
-
+		<result column="startTime" property="startTime" jdbcType="DATE"/>
 		<association property="shoppingAddress" javaType="ShoppingAddress">
 			<id column="addressId"  property="addressId" javaType="integer"/>
 			<result column="name"  property="name" jdbcType="VARCHAR"/>
@@ -47,7 +47,7 @@
 		update orders SET buyId=2 where buyId=0 and orderId=#{orderId}
 	</update>
 	<update id="updateAddressId" parameterType="Orders">
-		update orders SET addressId=#{addressId}, mes= #{mes} ,totalPrice=#{totalPrice} ,
+		update orders SET addressId=#{addressId},startTime=#{startTime}, mes= #{mes} ,totalPrice=#{totalPrice} ,
   			trueTotalPrice=#{trueTotalPrice},balance=#{balance},fare=#{fare} ,deleteId=0 where orderId = #{orderId}
 	</update>
 	<!--查询订单-->
