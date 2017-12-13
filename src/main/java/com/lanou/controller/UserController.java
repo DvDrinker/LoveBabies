@@ -39,7 +39,7 @@ public class UserController {
     }
 
     //登录
-    @RequestMapping(value = "/login.do")
+    @RequestMapping(value = "/login.do", method = RequestMethod.POST)
     public void login(String userName, String password, HttpServletResponse response, HttpSession httpSession) {
 
         List<User> users = userService.login(userName, password);
