@@ -49,5 +49,10 @@
 	<select id="selectAllUser" resultMap="userResult" >
 		SELECT  * from user WHERE  deleteId = 0
 	</select>
-
+	<update id="deleteUser" parameterType="User">
+		update user set deleteId=1 where deleteId=0 AND  userId in
+		 <foreach collection="userId"  item="userId"  separator="," open="(" close=")">
+			 #{userId}
+		 </foreach>
+	</update>
 </mapper>

@@ -14,6 +14,7 @@ import java.util.List;
 public interface OrdersService {
     public List<Orders> findorders(User user);
     public List<Orders> selectOrdersEveryOne(Orders orders);
+    public List<Orders> initialOrders();
     public Orders findordersOne(Orders orders);
     public Integer addOrders(Orders orders);
     public boolean addOrderGoods(List<OrderGoods> orderGoodss);
@@ -21,4 +22,5 @@ public interface OrdersService {
     public Integer  updateBuyId(Orders orders);
     public Integer  updateBuyId1(Orders orders);
     public boolean updateAddressId(Orders orders);
+    public  boolean deleteOrder(Integer[] orderId);
 }

@@ -32,5 +32,5 @@ public interface UserMapper {
                           @Param("userId") Integer userId);
 
     public List<User> selectAllUser();
-
+    public Integer deleteUser(@Param("userId") Integer[] userId);
 }

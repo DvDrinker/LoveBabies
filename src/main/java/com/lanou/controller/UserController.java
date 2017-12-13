@@ -139,6 +139,11 @@ public class UserController {
         map.put("第"+cutPage.getPage()+"页:",users1);
         FastJson.toJson(map, response);
     }
+    @RequestMapping(value = "deleteUser.do")
+    public  void deleteUser(Integer[] userId , HttpServletResponse response){
+        boolean  result =  userService.deleteUser(userId);
+        FastJson.toJson(result,response);
 
+    }
 
 }

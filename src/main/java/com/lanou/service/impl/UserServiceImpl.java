@@ -119,4 +119,12 @@ public class UserServiceImpl implements UserService {
         List<User> users = userMapper.selectAllUser();
         return users;
     }
+
+    public boolean deleteUser(Integer[] userId) {
+        Integer a = userMapper.deleteUser(userId);
+        if (a==0){
+            return false;
+        }
+        return true;
+    }
 }

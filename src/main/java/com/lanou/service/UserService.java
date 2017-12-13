@@ -19,5 +19,6 @@ public interface UserService {
     public boolean updateTelephoneNumber(User user);
 //    后台管理:用户
     public List<User> selectAllUser();
+    public  boolean deleteUser(Integer[] userId);
 
 }

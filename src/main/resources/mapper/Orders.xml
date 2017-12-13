@@ -61,15 +61,23 @@
 	</select>
 <!--订单管理-->
 	<select id="initialOrders" resultMap="OrdersResult">
-		SELECT * FROM orders where deleteId = 1
+		select * from  orders o,address a, orderGoods d,goods g where   o.addressId = a.addressId and
+		 o.orderId = d.order_id and d.goodsId = g.goodsId and o.deleteId=0
 	</select>
 	<!--<delete id="deleteOrderByDeleteId" >-->
 		<!--<foreach collection="array"-->
 	<!--</delete>-->
 	<!--作废--> <!--未付款--> <!--已付款-->
 	<select id="selectOrdersEveryOne" resultMap="OrdersResult">
-		SELECT * from orders where buyId = #{buyId}
-
+		select * from  orders o,address a, orderGoods d,goods g where o.buyId=#{buyId} and o.addressId = a.addressId and
+		 o.orderId = d.order_id and d.goodsId = g.goodsId and o.deleteId=0
 	</select>
+
+	<update id="deleteOrder" parameterType="Orders">
+		update orders set deleteId=1 where deleteId=0 AND  orderId in
+		<foreach collection="orderId"  item="orderId"  separator="," open="(" close=")">
+			#{orderId}
+		</foreach>
+	</update>
 
 </mapper>

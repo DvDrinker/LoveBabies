@@ -29,6 +29,12 @@ public class OrdersServiceImpl implements OrdersService {
         return orderss;
     }
 
+//所有
+    public List<Orders> initialOrders() {
+        List<Orders> orderss = ordersMapper.initialOrders();
+        return orderss;
+    }
+
     public Orders findordersOne(Orders orders) {
         Orders orders1 = ordersMapper.selectOrdersOne(orders);
 
@@ -76,5 +82,13 @@ public class OrdersServiceImpl implements OrdersService {
             return result;
         }
         return result;
+    }
+
+    public boolean deleteOrder(Integer[] orderId) {
+        Integer a = ordersMapper.deleteOrder(orderId);
+        if (a==0){
+            return false;
+        }
+        return true;
     }
 }

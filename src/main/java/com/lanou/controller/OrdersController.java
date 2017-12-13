@@ -130,6 +130,25 @@ public class OrdersController {
         map.put("第"+cutPage.getPage()+"页:",orderss1);
         FastJson.toJson(map,response);
     }
+    @RequestMapping(value = "/initialOrders.do")
+    public void initialOrders( CutPage cutPage,HttpServletResponse response){
+        List<Orders> orderss = ordersService.initialOrders();
+        cutPage.setCOUNT(4);
+        LimitPage limitPage  =new LimitPage();
+        List<Orders> orderss1 = limitPage.limitList(cutPage,orderss);
+        int totalPage  =  orderss.size()%cutPage.getCOUNT() == 0
+                ? orderss.size()/cutPage.getCOUNT()
+                : orderss.size()/cutPage.getCOUNT() + 1 ;
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("总页数:", totalPage);
+        map.put("第"+cutPage.getPage()+"页:",orderss1);
+        FastJson.toJson(map,response);
+    }
+    @RequestMapping(value = "deleteOrder.do")
+    public  void deleteUser(Integer[] orderId , HttpServletResponse response){
+        boolean  result =  ordersService.deleteOrder(orderId);
+        FastJson.toJson(result,response);
 
+    }
 
 }
