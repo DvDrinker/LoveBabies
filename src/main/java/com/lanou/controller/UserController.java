@@ -39,12 +39,13 @@ public class UserController {
     }
 
     //登录
-    @RequestMapping(value = "/login.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/login.do")
     public void login(String userName, String password, HttpServletResponse response, HttpSession httpSession) {
 
         List<User> users = userService.login(userName, password);
         boolean result = false;
         if (users.size() == 1) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
            Date date1 =  new Date();// new Date()为获取当前系统时间
             User user = users.get(0);
             List<Orders> orderss = ordersService.findorders(user);
@@ -55,8 +56,13 @@ public class UserController {
                 }
                 Date date2 =orders.getStartTime();
                 long l = date1.getTime() - date2.getTime();
-                long hour = l / (60 * 60 * 1000);
-                if (hour>=6){
+                long mint = l / ( 60 * 1000);
+                System.out.println(date1.getTime());
+                System.out.println(date2.getTime());
+                System.out.println(orders.getOrderId());
+                System.out.println("我擦来:"+mint);
+                System.out.println(l);
+                if (mint>=1){
                     ordersService.updateBuyId1(orders);
                 }
             }
