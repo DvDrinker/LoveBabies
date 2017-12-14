@@ -13,7 +13,7 @@
 		<result column="trueTotalPrice" property="trueTotalPrice" jdbcType="DOUBLE"/>
 		<result column="fare" property="fare" jdbcType="DOUBLE"/>
 		<result column="balance" property="balance" jdbcType="DOUBLE"/>
-		<result column="startTime" property="startTime" jdbcType="DATE"/>
+		<result column="startTime" property="startTime" jdbcType="TIMESTAMP"/>
 		<association property="shoppingAddress" javaType="ShoppingAddress">
 			<id column="addressId"  property="addressId" javaType="integer"/>
 			<result column="name"  property="name" jdbcType="VARCHAR"/>
