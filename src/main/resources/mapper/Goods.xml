@@ -173,6 +173,9 @@
 		 where goodsId = #{goodsId}
 	</update>
 
+	<insert id="addGoods">
+		INSERT INTO goods (goodsName)
+	</insert>
 	<!--private Integer goodsId;-->
 	<!--private String goodsName;-->
 	<!--private Double goodsConsultPrice;-->
